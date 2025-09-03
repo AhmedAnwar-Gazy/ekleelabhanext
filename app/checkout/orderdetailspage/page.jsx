@@ -1,0 +1,327 @@
+"use client";
+
+import React from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import {
+  CheckCircle,
+  Package,
+  Truck,
+  MapPin,
+  Calendar,
+  CreditCard,
+  Phone,
+  Mail,
+  Download,
+  Share,
+  ArrowLeft,
+} from "lucide-react";
+
+const OrderConfirmationPage = () => {
+  return (
+    <div className="min-h-screen bg-gray-50" style={{ direction: "rtl" }}>
+      <div className="max-w-4xl mx-auto p-6">
+        {/* Success Header */}
+        <div className="text-center mb-8">
+          <div className="flex justify-center mb-4">
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+              <CheckCircle className="w-8 h-8 text-green-600" />
+            </div>
+          </div>
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">
+            تم تأكيد طلبك بنجاح!
+          </h1>
+          <p className="text-gray-600">
+            شكراً لك على الطلب. سيتم معالجة طلبك قريباً
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Order Details */}
+          <div className="lg:col-span-2 space-y-6">
+            {/* Order Summary */}
+            <Card className="rounded-sm">
+              <CardHeader>
+                <CardTitle className="flex items-center justify-between">
+                  <span>تفاصيل الطلب</span>
+                  <Badge variant="secondary">#ORD-2024-001</Badge>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-4">
+                    <div className="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center">
+                      <Package className="w-8 h-8 text-gray-500" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-medium">The Ordinary</h3>
+                      <p className="text-sm text-gray-600">
+                        تونر مقشر بحمض الجليكوليك 7% - من ذا أورديناري - 240مل
+                      </p>
+                      <div className="flex items-center justify-between mt-2">
+                        <span className="text-sm text-gray-500">الكمية: 1</span>
+                        <span className="font-bold">66 ر.س</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <Separator />
+
+                  <div className="space-y-2">
+                    <div className="flex justify-between">
+                      <span>المجموع الفرعي</span>
+                      <span>66 ر.س</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>الشحن</span>
+                      <span>19 ر.س</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>الضريبة</span>
+                      <span>0 ر.س</span>
+                    </div>
+                    <Separator />
+                    <div className="flex justify-between font-bold text-lg">
+                      <span>الإجمالي</span>
+                      <span>85 ر.س</span>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Shipping Information */}
+            <Card className="rounded-sm">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Truck className="w-5 h-5" />
+                  معلومات الشحن
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="font-medium mb-2 flex items-center gap-2">
+                      <MapPin className="w-4 h-4" />
+                      عنوان التوصيل
+                    </h4>
+                    <div className="text-sm text-gray-600 space-y-1">
+                      <p>زياد فيصل</p>
+                      <p>أم خميس مخيط - Khamis Mushayt</p>
+                      <p>المملكة العربية السعودية</p>
+                      <p>966671277089</p>
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-medium mb-2 flex items-center gap-2">
+                      <Calendar className="w-4 h-4" />
+                      موعد التوصيل المتوقع
+                    </h4>
+                    <div className="text-sm text-gray-600">
+                      <p>من 16 إلى 6 أيام عمل</p>
+                      <p className="text-green-600 font-medium">
+                        التوصيل بحلول: 15 سبتمبر 2025
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Payment Information */}
+            <Card className="rounded-sm">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <CreditCard className="w-5 h-5" />
+                  معلومات الدفع
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="font-medium mb-2">طريقة الدفع</h4>
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-5 bg-blue-600 rounded flex items-center justify-center text-white text-xs font-bold">
+                        VISA
+                      </div>
+                      <span className="text-sm text-gray-600">
+                        **** **** **** 1234
+                      </span>
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-medium mb-2">حالة الدفع</h4>
+                    <Badge
+                      variant="default"
+                      className="bg-green-100 text-green-800"
+                    >
+                      تم الدفع بنجاح
+                    </Badge>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Action Sidebar */}
+          <div className="space-y-6">
+            {/* Order Status */}
+            <Card>
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <CardTitle>حالة الطلب</CardTitle>
+                  <Badge
+                    variant="secondary"
+                    className="bg-blue-100 text-blue-800"
+                  >
+                    25%
+                  </Badge>
+                </div>
+                {/* Progress Bar */}
+                <div className="mt-3">
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div
+                      className="bg-blue-600 h-2 rounded-full transition-all duration-500"
+                      style={{ width: "25%" }}
+                    ></div>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center relative">
+                      <CheckCircle className="w-4 h-4 text-green-600" />
+                      <div className="absolute -bottom-4 w-px h-4 bg-green-300 right-1/2 transform translate-x-1/2"></div>
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-medium text-sm">تم تأكيد الطلب</p>
+                      <p className="text-xs text-gray-500">
+                        1 سبتمبر 2025 - 10:30 ص
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center relative animate-pulse">
+                      <Package className="w-4 h-4 text-yellow-600" />
+                      <div className="absolute -bottom-4 w-px h-4 bg-gray-200 right-1/2 transform translate-x-1/2"></div>
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-medium text-sm">قيد التحضير</p>
+                      <p className="text-xs text-yellow-600">
+                        جاري التحضير الآن...
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 opacity-50">
+                    <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center relative">
+                      <Truck className="w-4 h-4 text-gray-400" />
+                      <div className="absolute -bottom-4 w-px h-4 bg-gray-200 right-1/2 transform translate-x-1/2"></div>
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-medium text-sm text-gray-400">
+                        في الطريق
+                      </p>
+                      <p className="text-xs text-gray-400">
+                        متوقع: 3 سبتمبر 2025
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 opacity-50">
+                    <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
+                      <CheckCircle className="w-4 h-4 text-gray-400" />
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-medium text-sm text-gray-400">
+                        تم التسليم
+                      </p>
+                      <p className="text-xs text-gray-400">
+                        متوقع: 5 سبتمبر 2025
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Estimated completion */}
+                <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-blue-900">
+                        الوقت المتوقع للإنجاز
+                      </p>
+                      <p className="text-xs text-blue-700">
+                        4-6 أيام عمل متبقية
+                      </p>
+                    </div>
+                    <div className="text-blue-600 font-bold">75%</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Actions */}
+            <Card>
+              <CardHeader>
+                <CardTitle>إجراءات</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <Button className="w-full" variant="outline">
+                  <Download className="w-4 h-4 ml-2" />
+                  تحميل الفاتورة
+                </Button>
+
+                <Button className="w-full" variant="outline">
+                  <Share className="w-4 h-4 ml-2" />
+                  مشاركة الطلب
+                </Button>
+
+                <Button className="w-full">تتبع الطلب</Button>
+              </CardContent>
+            </Card>
+
+            {/* Contact Support */}
+            <Card>
+              <CardHeader>
+                <CardTitle>هل تحتاج مساعدة؟</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div className="text-center">
+                  <p className="text-sm text-gray-600 mb-4">
+                    فريق الدعم متاح لمساعدتك
+                  </p>
+
+                  <div className="space-y-2">
+                    <Button variant="outline" className="w-full">
+                      <Phone className="w-4 h-4 ml-2" />
+                      اتصل بنا
+                    </Button>
+
+                    <Button variant="outline" className="w-full">
+                      <Mail className="w-4 h-4 ml-2" />
+                      راسلنا
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        {/* Continue Shopping */}
+        <div className="text-center mt-8">
+          <Button variant="outline" size="lg">
+            <ArrowLeft className="w-4 h-4 ml-2" />
+            متابعة التسوق
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default OrderConfirmationPage;
