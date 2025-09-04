@@ -1,32 +1,75 @@
-import { GalleryVerticalEnd } from "lucide-react";
+// "use client";
 
-import { LoginForm } from "@/components/login-form";
+// import { useState } from "react";
+// import { Button } from "@/components/ui/button";
+// import { Input } from "@/components/ui/input";
+// import { Label } from "@/components/ui/label";
+// import {
+//   Select,
+//   SelectContent,
+//   SelectItem,
+//   SelectTrigger,
+//   SelectValue,
+// } from "@/components/ui/select";
+// import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-export default function LoginPage() {
-  return (
-    <div className="grid min-h-svh lg:grid-cols-2">
-      <div className="flex flex-col gap-4 p-6 md:p-10">
-        <div className="flex justify-center gap-2 md:justify-start">
-          <a href="#" className="flex items-center gap-2 font-medium">
-            <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
-              <GalleryVerticalEnd className="size-4" />
-            </div>
-            Acme Inc.
-          </a>
-        </div>
-        <div className="flex flex-1 items-center justify-center">
-          <div className="w-full max-w-xs">
-            <LoginForm />
-          </div>
-        </div>
-      </div>
-      <div className="bg-muted relative hidden lg:block">
-        <img
-          src="/placeholder.svg"
-          alt="Image"
-          className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
-        />
-      </div>
-    </div>
-  );
-}
+// export default function LoginPage() {
+//   const [phoneNumber, setPhoneNumber] = useState("");
+//   const [countryCode, setCountryCode] = useState("966");
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     console.log("Phone:", countryCode + phoneNumber);
+//   };
+
+//   return (
+//     <div
+//       className=" p-10 flex items-center justify-center bg-gray-50 px-4"
+//       dir="rtl"
+//     >
+//       <Card className="w-full max-w-4xl">
+//         <CardHeader className="text-center">
+//           <CardTitle className="text-2xl font-semibold text-gray-900">
+//             تسجيل الدخول
+//           </CardTitle>
+//         </CardHeader>
+
+//         <CardContent>
+//           <form onSubmit={handleSubmit} className="space-y-4">
+//             <div className="space-y-2">
+//               <div className="flex gap-0 border border-gray-200 rounded-md overflow-hidden">
+//                 <Select value={countryCode} onValueChange={setCountryCode}>
+//                   <SelectTrigger className="w-20 border-none rounded-none border-r border-gray-200">
+//                     <SelectValue />
+//                   </SelectTrigger>
+//                   <SelectContent>
+//                     <SelectItem value="966">966</SelectItem>
+//                     <SelectItem value="965">965</SelectItem>
+//                     <SelectItem value="971">971</SelectItem>
+//                     <SelectItem value="973">973</SelectItem>
+//                     <SelectItem value="974">974</SelectItem>
+//                   </SelectContent>
+//                 </Select>
+//                 <Input
+//                   type="tel"
+//                   placeholder="5xxxxxxxx"
+//                   value={phoneNumber}
+//                   onChange={(e) => setPhoneNumber(e.target.value)}
+//                   className="flex-1 border-none rounded-none focus-visible:ring-0 focus-visible:ring-offset-0 text-right"
+//                   dir="ltr"
+//                 />
+//               </div>
+//             </div>
+
+//             <Button
+//               type="submit"
+//               className="w-full bg-black hover:bg-neutral-700 text-white py-6 text-lg"
+//             >
+//               أرسل الرمز
+//             </Button>
+//           </form>
+//         </CardContent>
+//       </Card>
+//     </div>
+//   );
+// }

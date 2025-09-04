@@ -22,6 +22,16 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
+import {
+  Command,
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -46,9 +56,21 @@ import {
   Percent,
   Sparkles,
   ChevronLeft,
+  ChevronDown,
   Star,
   Layers,
 } from "lucide-react";
+import Sigin from "../login in signin/SignIn";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import Sss from "./sssss";
+import Login from "../login in signin/login";
+
 // import ShoppingCarts from "@/components/cart/ShoppingCart";
 
 const categories = [
@@ -107,11 +129,13 @@ export default function PerfumeNavbar() {
           >
             <Search className="size-4" /> بحث
           </Button>
-          <Link href="/login">
-            <Button variant="ghost" size="sm" className="gap-1 px-2">
-              <User className="size-4" /> حسابي
-            </Button>
-          </Link>
+          {/* <Sss /> */}
+          {/* <Link href="/login"> */}
+          <Button variant="ghost" size="sm" className="gap-1 px-2">
+            <Login />
+            <User className="size-4" />
+          </Button>
+          {/* </Link> */}
           {/* <ShoppingCarts /> */}
           {/* <ShoppingCarts></ShoppingCarts> */}
 
@@ -184,7 +208,7 @@ function DesktopMegaMenu0({ className }) {
       <NavigationMenu dir="rtl">
         <NavigationMenuList className="gap-3">
           <NavigationMenuItem>
-            <NavigationMenuTrigger > الكل</NavigationMenuTrigger>
+            <NavigationMenuTrigger> الكل</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid gap-3 p-6 md:w-[400px]">
                 <li>
@@ -335,33 +359,41 @@ function MobileLink({ href, label, subtle, badge, icon }) {
 }
 
 function SearchBarDialog({ open, onOpenChange }) {
-  const [value, setValue] = useState("");
-
-  if (!open) return null;
-
   return (
-    <div
-      className="fixed inset-0 z-[60] bg-black/50 w-[100vw] h-[100vh] "
-      onClick={() => onOpenChange(false)}
-    >
-      <div
-        className="mx-auto mt-24 w-[92%] h-[50vh] max-w-2xl rounded-2xl border bg-background p-3 shadow-2xl"
-        dir="rtl"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="flex items-center gap-2">
-          <Search className="size-5 opacity-70" />
-          <Input
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-            placeholder="ابحث عن عطر، ماركة، نوتة..."
-            className="flex-1 border-0 focus-visible:ring-0"
-          />
-          <Button variant="secondary" onClick={() => onOpenChange(false)}>
-            إغلاق
-          </Button>
-        </div>
-      </div>
-    </div>
+    <CommandDialog open={open} onOpenChange={onOpenChange}>
+      <Command>
+        {/* 🔍 حقل البحث */}
+        <CommandInput placeholder="ابحث عن عطر، ماركة، نوتة..." />
+
+        <CommandList>
+          <CommandEmpty>لا توجد نتائج.</CommandEmpty>
+
+          {/* ✅ أقسام البحث */}
+          <CommandGroup heading="العطور">
+            <CommandItem>
+              <Link href="/perfumes?cat=oud">عود</Link>
+            </CommandItem>
+            <CommandItem>
+              <Link href="/perfumes?cat=fruity">فواكه</Link>
+            </CommandItem>
+            <CommandItem>
+              <Link href="/perfumes?cat=vanilla">فانيلا</Link>
+            </CommandItem>
+          </CommandGroup>
+
+          <CommandGroup heading="الماركات">
+            <CommandItem>
+              <Link href="/brands/chanel">Chanel</Link>
+            </CommandItem>
+            <CommandItem>
+              <Link href="/brands/dior">Dior</Link>
+            </CommandItem>
+            <CommandItem>
+              <Link href="/brands/gucci">Gucci</Link>
+            </CommandItem>
+          </CommandGroup>
+        </CommandList>
+      </Command>
+    </CommandDialog>
   );
 }
