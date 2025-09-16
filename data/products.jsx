@@ -8,6 +8,8 @@ export const products = [
     id: 1,
     category: CATEGORIES.PERFUMES,
     brand: "adidas", // 👈 هنا نربط المنتج بماركة
+    slug: "atr-alwurud-alfakhr",
+
     images: [
       "/images/1.jpg",
       "https://d3e7ardzpaj3y4.cloudfront.net/image/product/28981/17554493_1729759350_cbae718bc47fd9d9ad6dba05201545c0-1500x1500.png",
@@ -21,6 +23,7 @@ export const products = [
     id: 2,
     category: CATEGORIES.PERFUMES,
     brand: "adidas", // 👈 هنا نربط المنتج بماركة
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "/images/2.png",
@@ -36,6 +39,7 @@ export const products = [
     id: 3,
     category: CATEGORIES.PERFUMES,
     brand: "adidas", // 👈 هنا نربط المنتج بماركة
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "/images/3.png",
@@ -51,6 +55,7 @@ export const products = [
     id: 4,
     category: CATEGORIES.PERFUMES,
     brand: "adidas", // 👈 هنا نربط المنتج بماركة
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "/images/4.png",
@@ -59,6 +64,7 @@ export const products = [
     title: "عطر البحر النقي",
     description: "إحساس بالانتعاش والنقاء.",
     oldprice: 99,
+    slug: "atr-alwurud-alfakhr",
 
     price: 200,
   },
@@ -66,6 +72,7 @@ export const products = [
     id: 5,
     category: CATEGORIES.PERFUMES,
     brand: "adidas", // 👈 هنا نربط المنتج بماركة
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "/images/5.png",
@@ -81,6 +88,7 @@ export const products = [
     id: 6,
     category: CATEGORIES.PERFUMES,
     brand: "adidas", // 👈 هنا نربط المنتج بماركة
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "https://d3e7ardzpaj3y4.cloudfront.net/image/product/28981/83656984_1729759334_56460586303f0e878a9ab2e29b2ceacf-1500x1500.png",
@@ -96,6 +104,7 @@ export const products = [
     id: 7,
     category: CATEGORIES.PERFUMES,
     brand: "adidas", // 👈 هنا نربط المنتج بماركة
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "https://d3e7ardzpaj3y4.cloudfront.net/image/product/28981/83656984_1729759334_56460586303f0e878a9ab2e29b2ceacf-1500x1500.png",
@@ -111,6 +120,7 @@ export const products = [
     id: 8,
     category: CATEGORIES.PERFUMES,
     brand: "adidas", // 👈 هنا نربط المنتج بماركة
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "/images/4.png",
@@ -126,6 +136,7 @@ export const products = [
     id: 9,
     category: CATEGORIES.PERFUMES,
     brand: "adidas", // 👈 هنا نربط المنتج بماركة
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "/images/5.png",
@@ -141,6 +152,7 @@ export const products = [
     id: 10,
     category: CATEGORIES.PERFUMES,
     brand: "adidas", // 👈 هنا نربط المنتج بماركة
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "https://d3e7ardzpaj3y4.cloudfront.net/image/product/28981/83656984_1729759334_56460586303f0e878a9ab2e29b2ceacf-1500x1500.png",
@@ -156,6 +168,7 @@ export const products = [
     id: 11,
     category: CATEGORIES.PERFUMES,
     brand: "adidas", // 👈 هنا نربط المنتج بماركة
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "https://d3e7ardzpaj3y4.cloudfront.net/image/product/28981/83656984_1729759334_56460586303f0e878a9ab2e29b2ceacf-1500x1500.png",
@@ -170,6 +183,7 @@ export const products = [
     id: 12,
     category: CATEGORIES.PERFUMES,
     brand: "adidas", // 👈 هنا نربط المنتج بماركة
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "/images/4.png",
@@ -185,6 +199,7 @@ export const products = [
     id: 13,
     category: CATEGORIES.PERFUMES,
     brand: "adidas", // 👈 هنا نربط المنتج بماركة
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "/images/5.png",
@@ -200,6 +215,7 @@ export const products = [
     id: 14,
     category: CATEGORIES.PERFUMES,
     brand: "adidas", // 👈 هنا نربط المنتج بماركة
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "https://d3e7ardzpaj3y4.cloudfront.net/image/product/28981/83656984_1729759334_56460586303f0e878a9ab2e29b2ceacf-1500x1500.png",
@@ -208,6 +224,7 @@ export const products = [
     title: "عطر البحر النقي",
     description: "إحساس بالانتعاش والنقاء.",
     oldprice: 99.99,
+    slug: "atr-alwurud-alfakhr",
 
     price: 200,
   },
@@ -215,6 +232,7 @@ export const products = [
     id: 15,
     category: CATEGORIES.PERFUMES,
     brand: "adidas", // 👈 هنا نربط المنتج بماركة
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "https://d3e7ardzpaj3y4.cloudfront.net/image/product/28981/83656984_1729759334_56460586303f0e878a9ab2e29b2ceacf-1500x1500.png",
@@ -230,6 +248,7 @@ export const products = [
     id: 16,
     category: CATEGORIES.PERFUMES,
     brand: "adidas", // 👈 هنا نربط المنتج بماركة
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "/images/4.png",
@@ -245,6 +264,7 @@ export const products = [
     id: 17,
     category: CATEGORIES.PERFUMES,
     brand: "adidas", // 👈 هنا نربط المنتج بماركة
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "/images/5.png",
@@ -260,6 +280,7 @@ export const products = [
     id: 18,
     category: CATEGORIES.PERFUMES,
     brand: "adidas", // 👈 هنا نربط المنتج بماركة
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "https://d3e7ardzpaj3y4.cloudfront.net/image/product/28981/83656984_1729759334_56460586303f0e878a9ab2e29b2ceacf-1500x1500.png",
@@ -275,6 +296,7 @@ export const products = [
     id: 19,
     category: CATEGORIES.PERFUMES,
     brand: "adidas", // 👈 هنا نربط المنتج بماركة
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "https://d3e7ardzpaj3y4.cloudfront.net/image/product/28981/83656984_1729759334_56460586303f0e878a9ab2e29b2ceacf-1500x1500.png",
@@ -290,6 +312,7 @@ export const products = [
     id: 20,
     category: CATEGORIES.PERFUMES,
     brand: "adidas", // 👈 هنا نربط المنتج بماركة
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "/images/4.png",
@@ -305,6 +328,7 @@ export const products = [
     id: 21,
     category: CATEGORIES.PERFUMES,
     brand: "adidas", // 👈 هنا نربط المنتج بماركة
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "/images/5.png",
@@ -320,6 +344,7 @@ export const products = [
     id: 22,
     category: CATEGORIES.PERFUMES,
     brand: "adidas", // 👈 هنا نربط المنتج بماركة
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "https://d3e7ardzpaj3y4.cloudfront.net/image/product/28981/83656984_1729759334_56460586303f0e878a9ab2e29b2ceacf-1500x1500.png",
@@ -335,6 +360,7 @@ export const products = [
     id: 23,
     category: CATEGORIES.PERFUMES,
     brand: "adidas", // 👈 هنا نربط المنتج بماركة
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "https://d3e7ardzpaj3y4.cloudfront.net/image/product/28981/83656984_1729759334_56460586303f0e878a9ab2e29b2ceacf-1500x1500.png",
@@ -350,6 +376,7 @@ export const products = [
     id: 24,
     category: CATEGORIES.PERFUMES,
     brand: "chanel",
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "/images/4.png",
@@ -365,6 +392,8 @@ export const products = [
     id: 25,
     category: CATEGORIES.MAKEUP,
     brand: "cantabria-labs",
+    slug: "atr-alwurud-alfakhr",
+
     images: [
       "/images/cantabrialabs/c1.jpg",
       "https://d3e7ardzpaj3y4.cloudfront.net/image/product/28981/17554493_1729759350_cbae718bc47fd9d9ad6dba05201545c0-1500x1500.png",
@@ -379,6 +408,7 @@ export const products = [
     id: 26,
     category: CATEGORIES.MAKEUP,
     brand: "cantabria-labs",
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "/images/cantabrialabs/c2.jpg",
@@ -394,6 +424,7 @@ export const products = [
     id: 27,
     category: CATEGORIES.MAKEUP,
     brand: "cantabria-labs",
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "/images/cantabrialabs/c3.jpg",
@@ -409,6 +440,7 @@ export const products = [
     id: 28,
     category: CATEGORIES.MAKEUP,
     brand: "cantabria-labs",
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "/images/cantabrialabs/c4.jpg",
@@ -424,6 +456,7 @@ export const products = [
     id: 29,
     category: CATEGORIES.MAKEUP,
     brand: "cantabria-labs",
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "/images/cantabrialabs/c5.jpg",
@@ -439,6 +472,7 @@ export const products = [
     id: 30,
     category: CATEGORIES.MAKEUP,
     brand: "cantabria-labs",
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "/images/cantabrialabs/c1.jpg",
@@ -454,6 +488,7 @@ export const products = [
     id: 31,
     category: CATEGORIES.PERFUMES,
     brand: "adidas", // 👈 هنا نربط المنتج بماركة
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "/images/cantabrialabs/c1.jpg",
@@ -469,6 +504,7 @@ export const products = [
     id: 32,
     category: CATEGORIES.PERFUMES,
     brand: "adidas", // 👈 هنا نربط المنتج بماركة
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "/images/cantabrialabs/c1.jpg",
@@ -484,6 +520,7 @@ export const products = [
     id: 30,
     category: CATEGORIES.MAKEUP,
     brand: "cantabria-labs",
+    slug: "atr-alwurud-alfakhr",
 
     images: [
       "/images/cantabrialabs/c1.jpg",

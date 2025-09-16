@@ -5,7 +5,7 @@ import "@emran-alhaddad/saudi-riyal-font/index.css";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Star, Heart, ShoppingCart } from "lucide-react";
-import { useCart } from "@/lib/CartContext";
+// import { useCart } from "@/lib/CartContext";
 
 // import { toast } from "react-hot-toast"; // اختياري للإشعارات
 import Link from "next/link";
@@ -14,18 +14,18 @@ export default function ProductCard({
   id,
   category,
   brand,
-  images,
+  image,
   description,
-  title,
+  name,
   oldprice,
   price,
 }) {
-  const { addToCart } = useCart();
+  // const { addToCart } = useCart();
 
   const product = {
     id,
-    images,
-    title,
+    image,
+    name,
     description,
     price,
   };
@@ -40,12 +40,12 @@ export default function ProductCard({
 
     const productToAdd = {
       id: product.id,
-      title: product.title,
+      name: product.name,
       description: product.description,
       price: product.price,
       image:
-        product.images && product.images.length > 0
-          ? product.images[0]
+        product.image && product.image.length > 0
+          ? product.image[0]
           : "/images/placeholder.png",
     };
     addToCart({
@@ -56,7 +56,7 @@ export default function ProductCard({
     // toast.success(`تم إضافة ${product.name} إلى السلة`);
 
     // أو يمكنك استخدام alert بسيط
-    alert(`تم إضافة ${product.title} إلى السلة`);
+    alert(`تم إضافة ${product.name} إلى السلة`);
   };
   return (
     <Card className="w-60 relative overflow-hidden rounded-xl p-3 mt-2 mb-5">
@@ -69,8 +69,9 @@ export default function ProductCard({
         {/* صورة المنتج */}
         <div className="flex justify-center">
           <img
-            src={images && images.length > 0 ? images[0] : "/images/2.png"}
-            alt={title}
+            src={image}
+            // src={image && image.length > 0 ? image[0] : "/images/no_image.jpg"}
+            alt={name}
             className="h-44 w-full object-cover"
           />
         </div>
@@ -88,7 +89,7 @@ export default function ProductCard({
         <p className="font-semibold text-sm">{brand}</p>
 
         {/* وصف المنتج */}
-        <p className="text-xs text-gray-500">{description}</p>
+        <p className="text-xs text-gray-500">{name}</p>
 
         {/* السعر + زر الإضافة */}
         <div className="flex justify-between items-center mt-2">
@@ -102,7 +103,7 @@ export default function ProductCard({
           <Button
             size="icon"
             className="rounded-full bg-gray-100 hover:bg-gray-200"
-            onClick={handleAddToCart}
+            // onClick={handleAddToCart}
           >
             <ShoppingCart className="w-5 h-5 text-gray-700" />
           </Button>

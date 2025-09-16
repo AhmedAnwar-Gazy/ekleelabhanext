@@ -60,7 +60,6 @@ import {
   Star,
   Layers,
 } from "lucide-react";
-import Sigin from "../login in signin/SignIn";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -68,8 +67,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import Sss from "./sssss";
-import Login from "../login in signin/login";
+import Login from "../login_and_signin/login";
+import { SearchTop } from "./Sreach";
 
 // import ShoppingCarts from "@/components/cart/ShoppingCart";
 
@@ -129,6 +128,7 @@ export default function PerfumeNavbar() {
           >
             <Search className="size-4" /> بحث
           </Button>
+
           {/* <Sss /> */}
           {/* <Link href="/login"> */}
           <Button variant="ghost" size="sm" className="gap-1 px-2">
@@ -360,7 +360,11 @@ function MobileLink({ href, label, subtle, badge, icon }) {
 
 function SearchBarDialog({ open, onOpenChange }) {
   return (
-    <CommandDialog open={open} onOpenChange={onOpenChange}>
+    <CommandDialog
+      open={open}
+      onOpenChange={onOpenChange}
+      className="w-[100%] backdrop-blur-2xl"
+    >
       <Command>
         {/* 🔍 حقل البحث */}
         <CommandInput placeholder="ابحث عن عطر، ماركة، نوتة..." />

@@ -1,7 +1,9 @@
+"use client"; // مهم في app directory
 
 import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -102,25 +104,27 @@ export default function ContactPage() {
   );
 
   return (
-    <div className="min-h-screen bg-amber-50 from-pink-50 to-purple-50 py-8 px-4">
-      <div className="max-w-2xl mx-auto">
+    <div className="min-h-screen from-pink-50 to-purple-50 py-8 px-4">
+      <div className="max-w-8xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-4">اتصل بنا</h1>
-          <p className="text-gray-600 leading-relaxed text-right">
-            يسعدنا أن نتلقى استفساراتكم وآرائكم حول جميع منتجاتنا الجمالية من
-            عطور ومكياج ومنتجات العناية. فريقنا متاح للإجابة على كل أسئلتكم
-            وتقديم المساعدة والإرشاد. للحصول على أفضل خدمة، يرجى ملء النموذج
-            أدناه بالتفصيل.
-          </p>
-          <p className="text-sm  mt-2">
-            خدمة العملاء: <span className="font-bold">0501234567</span>
-          </p>
-        </div>
 
         {/* Contact Form */}
         <Card className=" border">
           <CardContent className="p-8">
+            <div className="text-center mb-8">
+              <h1 className="text-3xl font-bold text-gray-800 mb-4">
+                اتصل بنا
+              </h1>
+              <p className="text-gray-600 leading-relaxed text-right">
+                يسعدنا أن نتلقى استفساراتكم وآرائكم حول جميع منتجاتنا الجمالية
+                من عطور ومكياج ومنتجات العناية. فريقنا متاح للإجابة على كل
+                أسئلتكم وتقديم المساعدة والإرشاد. للحصول على أفضل خدمة، يرجى ملء
+                النموذج أدناه بالتفصيل.
+              </p>
+              <p className="text-sm  mt-2">
+                خدمة العملاء: <span className="font-bold">0501234567</span>
+              </p>
+            </div>
             <div className="space-y-6">
               {/* Name Field */}
               <div>
@@ -221,39 +225,15 @@ export default function ContactPage() {
               </div>
 
               {/* Submit Button */}
-              <button
-                type="button"
+              <Button
                 onClick={handleSubmit}
-                className="w-full bg-teal-900 from-purple-600 to-pink-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transform hover:scale-105 transition-all duration-200 shadow-lg"
+                className="w-full bg-black text-white py-4 text-lg font-semibold mb-2"
               >
                 إرسال
-              </button>
+              </Button>
             </div>
           </CardContent>
         </Card>
-
-        {/* Additional Info */}
-        <div className="mt-8 text-center">
-          <div className="grid md:grid-cols-3 gap-6 text-sm text-gray-600">
-            <div className="bg-white p-4 rounded-lg shadow">
-              <h3 className="font-semibold text-purple-600 mb-2">
-                أوقات العمل
-              </h3>
-              <p>السبت - الخميس: 9:00 - 22:00</p>
-              <p>الجمعة: 14:00 - 22:00</p>
-            </div>
-            <div className="bg-white p-4 rounded-lg shadow">
-              <h3 className="font-semibold text-purple-600 mb-2">التوصيل</h3>
-              <p>توصيل مجاني للطلبات فوق 200 ريال</p>
-              <p>توصيل سريع خلال 24 ساعة</p>
-            </div>
-            <div className="bg-white p-4 rounded-lg shadow">
-              <h3 className="font-semibold text-purple-600 mb-2">الضمان</h3>
-              <p>ضمان الجودة 100%</p>
-              <p>إمكانية الإرجاع خلال 7 أيام</p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

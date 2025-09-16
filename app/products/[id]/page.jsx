@@ -16,7 +16,12 @@ import {
 } from "@/components/ui/carousel";
 import { useParams } from "next/navigation";
 
-import { products } from "@/data/products";
+// import { products } from "@/data/products";
+import {
+  useGetProductByIdQuery,
+  useGetRelatedProductsQuery,
+} from "@/features/products/productsSlice";
+
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 
 const ProductDetails = () => {
@@ -61,20 +66,51 @@ const ProductDetails = () => {
   //product
   const params = useParams();
   const id = params.id;
-  const product = products.find((p) => p.id === Number(id));
-  if (!product) return <p>المنتج غير موجود</p>;
-  if (!product) return <p>المنتج غير موجود</p>;
+  // const { data: products, isLoading, isError } = useGetProductByIdQuery(id);
+
+  // // جلب المنتج
+  // const {
+  //   data: products,
+  //   isLoading: productLoading,
+  //   isError: productError,
+  // } = useGetProductByIdQuery(id);
+
+  // // حالات التحميل/الخطأ
+  // if (productLoading) return <p>جارٍ تحميل المنتج...</p>;
+  // if (productError) return <p>حدث خطأ في جلب المنتج</p>;
+  // if (!products) return <p>لم يتم العثور على المنتج</p>;
+  // if (productLoading) return <p>جاري التحميل...</p>;
+  // if (isError) return <p>حدث خطأ في جلب المنتج</p>;
+  // if (!products) return <p>المنتج غير موجود</p>;
+  // const product = products.find((p) => p.id === Number(id));
+  // if (!product) return <p>المنتج غير موجود</p>;
+  // if (!product) return <p>المنتج غير موجود</p>;
 
   // جلب المنتجات المقترحة بنفس الفئة
-  const relatedProducts = products
-    .filter((p) => p.category === product.category && p.id !== product.id)
-    .slice(0, 15);
-  //   const productImages = [
-  //     "/api/placeholder/400/400",
-  //     "/api/placeholder/400/400",
-  //   ];
+  // const relatedProducts = products
+  //   .filter((p) => p.category === product.category && p.id !== product.id)
+  //   .slice(0, 15);
+  // const productImages = [
+  //   "/api/placeholder/400/400",
+  //   "/api/placeholder/400/400",
+  // ];
 
-  const thumbnails = ["/api/placeholder/80/80", "/api/placeholder/80/80"];
+  // const thumbnails = ["/api/placeholder/80/80", "/api/placeholder/80/80"];
+
+  // المنتج الرئيسي
+  const { data: products, isLoading: productLoading } =
+    useGetProductByIdQuery(id);
+
+  // المنتجات المقترحة (related)
+  const { data: relatedData, isLoading: relatedLoading } =
+    useGetRelatedProductsQuery(id);
+
+  if (productLoading) return <p>جارٍ تحميل المنتج...</p>;
+  if (!products) return <p>لم يتم العثور على المنتج</p>;
+
+  const relatedProducts = relatedData?.ids?.map(
+    (productId) => relatedData.entities[productId]
+  );
 
   return (
     <div className="bg-neutral-50 py-5">
@@ -95,8 +131,8 @@ const ProductDetails = () => {
                 ref={mainImageRef}
               >
                 <img
-                  src={product.images[selectedImageIndex]}
-                  alt={product.title}
+                  // src={products.images[selectedImageIndex]}
+                  alt={products.name}
                   className="w-full h-full object-cover"
                 />
                 {/* Magnifier Lens */}
@@ -106,7 +142,7 @@ const ProductDetails = () => {
                     style={{
                       left: magnifierPosition.x - 80,
                       top: magnifierPosition.y - 80,
-                      backgroundImage: `url(${product.images[selectedImageIndex]})`,
+                      // backgroundImage: `url(${products.images[selectedImageIndex]})`,
                       backgroundSize: "200%",
                       backgroundPosition: `${magnifierBackgroundPosition.x}% ${magnifierBackgroundPosition.y}%`,
                       backgroundRepeat: "no-repeat",
@@ -118,7 +154,7 @@ const ProductDetails = () => {
                   <div
                     className="absolute inset-0 z-10"
                     style={{
-                      backgroundImage: `url(${product.images[selectedImageIndex]})`,
+                      // backgroundImage: `url(${products.images[selectedImageIndex]})`,
                       backgroundSize: "200%",
                       backgroundPosition: `${magnifierBackgroundPosition.x}% ${magnifierBackgroundPosition.y}%`,
                       backgroundRepeat: "no-repeat",
@@ -154,9 +190,9 @@ const ProductDetails = () => {
               ))}
             </div> */}
             {/* Thumbnail Gallery */}
-            {product.images > 1 && (
+            {products.images > 1 && (
               <div className="flex gap-3">
-                {product.images.map((image, index) => (
+                {products.images.map((image, index) => (
                   <button
                     key={index}
                     onClick={() => handleImageSelect(index)}
@@ -192,7 +228,7 @@ const ProductDetails = () => {
               </div>
             </div>{" "}
             <h2 className="text-xl font-bold  text-gray-800">
-              {product.brand}
+              {products.brand}
             </h2>
             {/* Rating */}
             <div className="flex items-center gap-2">
@@ -224,18 +260,18 @@ const ProductDetails = () => {
             </div>
             {/* Product Title */}
             <h1 className="text-xl font-medium text-gray-900 leading-relaxed">
-              {product.description}
+              {products.name}
             </h1>
             {/* Price Section */}
             <div className="space-y-2">
               <div className="flex items-center gap-3">
                 <span className="text-gray-400 line-through text-lg">
-                  <span class="icon-saudi_riyal">{product.oldprice}</span>
+                  <span class="icon-saudi_riyal">{products.oldprice}</span>
                 </span>
                 <Badge className="bg-red-100 text-red-600 text-sm">-67%</Badge>
               </div>
               <div className="text-3xl font-bold text-red-600">
-                <span class="icon-saudi_riyal">{product.price}</span>
+                <span class="icon-saudi_riyal">{products.price}</span>
               </div>
               <p className="text-sm text-gray-500">شامل الضريبة</p>
             </div>
@@ -306,12 +342,13 @@ const ProductDetails = () => {
           className=" relative "
         >
           <CarouselContent className="w-full mx-10">
-            {relatedProducts.map((p) => (
+            {relatedProducts?.map((related) => (
               <CarouselItem
-                key={p.id}
-                className=" basis-1/2 sm:basis-1/3 md:basis-1/3 lg:basis-1/5"
+                key={related.id}
+                className="basis-1/2 sm:basis-1/3 md:basis-1/3 lg:basis-1/5"
               >
-                <ProductCard {...p} />
+                {/* بدل div البسيط بكارت حقيقي */}
+                <ProductCard {...related} />
               </CarouselItem>
             ))}
           </CarouselContent>

@@ -25,6 +25,8 @@ import {
 import { Calendar } from "@/components/ui/calendar";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
+import OTPDialog from "@/components/login_and_signin/verification_OTP/OTP";
 
 export default function Login() {
   const [activeMode, setMode] = useState("login"); // login | signup
@@ -32,9 +34,54 @@ export default function Login() {
   const [countryCode, setCountryCode] = useState("966");
   const [date, setDate] = useState(null);
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log("Phone:", countryCode + phoneNumber);
+  // };
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("Phone:", countryCode + phoneNumber);
+    try {
+      const data = await authAPI.login({
+        email: `${countryCode}${phoneNumber}@temp.com`, // 👈 مؤقت إذا API يحتاج ايميل
+        password: "password123", // 👈 مؤقت كمان (إلا إذا عندك OTP system)
+      });
+
+      localStorage.setItem("access_token", data.token);
+      alert("✅ تسجيل الدخول ناجح");
+      toast("Event has been created.");
+    } catch (error) {
+      toast("Event has been created.");
+      console.error(error);
+    }
+  };
+
+  const handleRegister = async () => {
+    try {
+      const data = await authAPI.register({
+        firstname: "زياد", // 👈 غيرها من input
+        lastname: "فيصل", // 👈 غيرها من input
+        email: "zeyad@example.com", // 👈 لازم ايميل صحيح
+        telephone: "+966" + phoneNumber, // 👈 رقم الهاتف
+        password: "password123",
+        password_confirmation: "password123",
+      });
+
+      alert("✅ تم إنشاء الحساب");
+      console.log("Register:", data);
+      setMode("login");
+    } catch (error) {
+      console.error("Register error:", error.response?.data || error.message);
+      alert(
+        "❌ فشل إنشاء الحساب: " +
+          (error.response?.data?.message || "خطأ غير معروف")
+      );
+    }
+  };
+
+  //كود خاص بفتح oTp Dialog
+  const [open, setOpen] = useState(false);
+  const handleSubmit = (otp) => {
+    console.log("الكود المدخل:", otp);
   };
 
   return (
@@ -50,7 +97,7 @@ export default function Login() {
                 يا هلا بك في متجرنا!
               </SheetTitle>
             </SheetHeader>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleLogin} className="space-y-4">
               <div className="space-y-2">
                 <div className="flex gap-0 border border-gray-200 rounded-md overflow-hidden">
                   <Select value={countryCode} onValueChange={setCountryCode}>
@@ -77,9 +124,19 @@ export default function Login() {
               </div>
 
               <div className="absolute bottom-4 left-0 right-0 p-4">
-                <Button className="w-full bg-black text-white py-4 mb-2 text-lg font-semibold">
-                  إرسال الرمز
-                </Button>
+                <div>
+                  <Button
+                    onClick={() => setOpen(true)}
+                    className="w-full bg-black text-white py-4 mb-2 text-lg font-semibold"
+                  >
+                    إرسال الرمز
+                  </Button>
+                  <OTPDialog
+                    open={open}
+                    onOpenChange={setOpen}
+                    onSubmit={handleSubmit}
+                  />
+                </div>
                 <Button
                   variant="ghost"
                   className="w-full py-4 text-lg font-semibold cursor-pointer"
@@ -142,7 +199,10 @@ export default function Login() {
               </div>
             </div>
             <div className="absolute bottom-4 left-0 right-0 p-4">
-              <Button className="w-full bg-black text-white py-4 text-lg font-semibold mb-2">
+              <Button
+                onClick={handleRegister}
+                className="w-full bg-black text-white py-4 text-lg font-semibold mb-2"
+              >
                 تسجيل جديد
               </Button>
               <Button
