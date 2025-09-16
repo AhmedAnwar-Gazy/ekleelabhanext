@@ -48,7 +48,6 @@ export default function Login() {
 
       localStorage.setItem("access_token", data.token);
       alert("✅ تسجيل الدخول ناجح");
-      toast("Event has been created.");
     } catch (error) {
       toast("Event has been created.");
       console.error(error);
