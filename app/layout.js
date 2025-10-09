@@ -1,9 +1,9 @@
-import { Geist, Geist_Mono } from "next/font/google";
+// import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import PerfumeNavbar from "@/components/layout/Navbar";
 import { Footer2 } from "@/components/layout/footer2";
 // import { CartProvider } from "@/lib/CartContext";
-import { Cairo } from "next/font/google";
+// import { Cairo } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { Providers } from "./store/providers";
 
@@ -73,8 +73,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" dir="rtl">
-      {/* <body className={`${geistSans.variable}  antialiased`}> */}
-      <body>
+      {/* <body className={`${cairo.variable}  antialiased`}> */}
+      <body className="antialiased">
+        {/* <body> */}
         <PerfumeNavbar />
         <div className="bg-neutral-50">
           <Providers>{children}</Providers>

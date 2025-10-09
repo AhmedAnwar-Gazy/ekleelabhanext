@@ -108,7 +108,7 @@ export default function Home() {
       <Offers items={offerItems} />
 
       {/* الاكثر مبيعا  */}
-      <Carousel
+      {/* <Carousel
         opts={{ align: "start", direction: "rtl", loop: false }}
         className="w-full relative"
       >
@@ -132,7 +132,7 @@ export default function Home() {
           <CarouselNext className="border-current h-10 w-10 rounded-full hover:bg-gray-200 flex items-center justify-center transition" />
           <CarouselPrevious className="border-current h-10 w-10 rounded-full hover:bg-gray-200 flex items-center justify-center transition" />
         </div>
-      </Carousel>
+      </Carousel> */}
     </div>
   );
 }
