@@ -7,21 +7,21 @@ import { Cairo } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { Providers } from "./store/providers";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+// const geistSans = Geist({
+//   variable: "--font-geist-sans",
+//   subsets: ["latin"],
+// });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// const geistMono = Geist_Mono({
+//   variable: "--font-geist-mono",
+//   subsets: ["latin"],
+// });
 
-const cairo = Cairo({
-  subsets: ["arabic", "latin"], // ضروري للغة العربية
-  weight: ["400", "700"], // الأوزان اللي تحتاجها
-  variable: "--font-cairo", // نربطه بـ CSS variable
-});
+// const cairo = Cairo({
+//   subsets: ["arabic", "latin"], // ضروري للغة العربية
+//   weight: ["400", "700"], // الأوزان اللي تحتاجها
+//   variable: "--font-cairo", // نربطه بـ CSS variable
+// });
 
 export const metadata = {
   title: {
@@ -73,7 +73,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" dir="rtl">
-      <body className={`${cairo.variable}  antialiased`}>
+      {/* <body className={`${geistSans.variable}  antialiased`}> */}
+      <body>
         <PerfumeNavbar />
         <div className="bg-neutral-50">
           <Providers>{children}</Providers>

@@ -136,8 +136,9 @@ export default function PerfumeNavbar() {
             <User className="size-4" />
           </Button>
           {/* </Link> */}
-          {/* <ShoppingCarts /> */}
-          {/* <ShoppingCarts></ShoppingCarts> */}
+          {/* <ShoppingCarts /> 
+                    <ShoppingCarts></ShoppingCarts>
+*/}
 
           <Button variant="outline" size="sm" className="gap-2 rounded-full">
             <MapPin className="size-4" />
@@ -328,8 +329,56 @@ function MobileMenu() {
           <SheetTitle className="text-right">القائمة</SheetTitle>
         </SheetHeader>
         <ScrollArea className="h-[85vh] pe-2">
-          <nav className="mt-4 space-y-2">
-            <DesktopMegaMenu0 className="flex flex-col space-y-2 p-4 " />
+          <nav className="flex flex-col mt-8 text-right">
+            <span className="font-bold text-2xl border-b border-black pb-3 mb-4">
+              الكل
+            </span>
+
+            <div className="flex flex-col gap-3 text-lg mb-6">
+              <Link
+                href="#"
+                className="px-3 py-2 transition hover:underline hover:opacity-80"
+              >
+                قسم 1
+              </Link>
+              <Link
+                href="#"
+                className="px-3 py-2 transition hover:underline hover:opacity-80"
+              >
+                قسم 2
+              </Link>
+              <Link
+                href="#"
+                className="px-3 py-2 transition hover:underline hover:opacity-80"
+              >
+                قسم 3
+              </Link>
+            </div>
+
+            <Link
+              href="/make_up"
+              className="px-3 py-2 text-lg transition hover:underline hover:opacity-80"
+            >
+              المكياج
+            </Link>
+            <Link
+              href="/perfumes"
+              className="px-3 py-2 text-lg transition hover:underline hover:opacity-80"
+            >
+              العطور
+            </Link>
+            <Link
+              href="/health"
+              className="px-3 py-2 text-lg transition hover:underline hover:opacity-80"
+            >
+              الصحة والتغذية
+            </Link>
+            <Link
+              href="/brands"
+              className="px-3 py-2 text-lg transition hover:underline hover:opacity-80"
+            >
+              الماركات
+            </Link>
           </nav>
         </ScrollArea>
       </SheetContent>
