@@ -131,7 +131,7 @@ const ProductDetails = () => {
                 ref={mainImageRef}
               >
                 <img
-                  // src={products.images[selectedImageIndex]}
+                  src={products.image}
                   alt={products.name}
                   className="w-full h-full object-cover"
                 />
@@ -165,32 +165,9 @@ const ProductDetails = () => {
               </div>
             </div>
 
-            {/* Thumbnail Images
-            <div className="flex gap-2">
-              {thumbnails.map((thumb, index) => (
-                <button
-                  key={index}
-                  onClick={() => setSelectedImage(index)}
-                  className={`w-20 h-20 rounded-lg border-2 overflow-hidden ${
-                    selectedImage === index
-                      ? "border-gray-400"
-                      : "border-gray-200"
-                  }`}
-                >
-                  <img
-                    src={
-                      index === 0
-                        ? "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=80&h=80&fit=crop&crop=center"
-                        : "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=80&h=80&fit=crop&crop=center"
-                    }
-                    alt={`صورة ${index + 1}`}
-                    className="w-full h-full object-cover"
-                  />
-                </button>
-              ))}
-            </div> */}
+
             {/* Thumbnail Gallery */}
-            {products.images > 1 && (
+            {/* {products.images > 1 && (
               <div className="flex gap-3">
                 {products.images.map((image, index) => (
                   <button
@@ -211,7 +188,7 @@ const ProductDetails = () => {
                   </button>
                 ))}
               </div>
-            )}
+            )} */}
           </div>
 
           {/* Product Details Section */}
