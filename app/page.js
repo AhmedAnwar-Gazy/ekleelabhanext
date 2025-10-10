@@ -18,7 +18,10 @@ import SeketonCard from "@/components/layout/skeletoncard";
 import {
   useGetProductsQuery,
   useGetTopProductsQuery,
+  useGetNewProductsQuery,
+  useGetDealsProductsQuery,
 } from "@/features/products/productsSlice";
+import { useSelector } from "react-redux";
 
 // import { Offersdata } from "@/data/offers";
 import { brands } from "@/data/brands";
@@ -48,19 +51,50 @@ const offerItems = [
 ];
 
 export default function Home() {
+  // بيانات المنتجات
   const { data, isLoading, isError } = useGetProductsQuery({
     limit: 20,
     page: 1,
   });
   const products = data?.ids?.map((id) => data.entities[id]) || [];
 
-  // المنتجات الأكثر مبيعًا
+  //  بيانات الاعلى المنتجات
   const {
-    data: topData,
+    data: topProductsResult, // Contains { ids, entities } and meta data if transformResponse was applied
     isLoading: topLoading,
+    isSuccess: topSuccess,
     isError: topError,
+    error,
   } = useGetTopProductsQuery({ limit: 12 });
-  const topProducts = topData?.ids?.map((id) => topData.entities[id]) || [];
+
+  const topProducts =
+    topProductsResult?.ids?.map((id) => topProductsResult.entities[id]) || [];
+
+  if (topError) {
+    console.error("Top Products API Error:");
+  }
+  // بيانات المنتجات الجديدة
+  const {
+    data: newProductsResult, // Contains { ids, entities } and meta data if transformResponse was applied
+    isLoading: newLoading,
+    isSuccess: newSuccess,
+    isError: newError,
+  } = useGetNewProductsQuery({ limit: 12 });
+
+  const newProducts =
+    newProductsResult?.ids?.map((id) => newProductsResult.entities[id]) || [];
+
+  // بيانات deals
+  const {
+    data: dealsProductsResult,
+    isLoading: dealsLoading,
+    isSuccess: dealsSuccess,
+    isError: dealsError,
+  } = useGetDealsProductsQuery({ limit: 12 });
+
+  const dealsProducts =
+    dealsProductsResult?.ids?.map((id) => dealsProductsResult.entities[id]) ||
+    [];
 
   return (
     <div className="">
@@ -70,7 +104,7 @@ export default function Home() {
         <h1 className="text-4xl font-bold mb-4 pt-10">متجر العطور الفاخر</h1>
         <p className="text-gray-600">اكتشف أروع وأفخم العطور من حول العالم</p>
       </section>
-      <div className="w-full max-w-8xl mx-auto " dir="rtl">
+      <div className="w-full max-w-8xl mx-auto pt-10 " dir="rtl">
         <Carousel
           opts={{
             align: "start", // يبدأ من أول عنصر (لا يقطع العناصر)
@@ -100,39 +134,118 @@ export default function Home() {
             <CarouselNext className=" border-current static h-10 w-10 rounded-full hover:bg-gray-200  flex items-center justify-center transition" />
             <CarouselPrevious className=" border-current static h-10 w-10 rounded-full hover:bg-gray-200 flex items-center justify-center transition" />
           </div>
-          {/* <CarouselPrevious />
-          <CarouselNext /> */}
         </Carousel>
       </div>
 
       <Offers items={offerItems} />
 
-      {/* الاكثر مبيعا  */}
-      {/* <Carousel
-        opts={{ align: "start", direction: "rtl", loop: false }}
-        className="w-full relative"
-      >
-        <CarouselContent className="w-full mx-10">
-          {isLoading ? (
-            <SeketonCard />
-          ) : isError ? (
-            <p>حدث خطأ أثناء جلب المنتجات</p>
-          ) : (
-            topProducts.map((p) => (
-              <CarouselItem
-                key={p.id}
-                className="basis-1/1 sm:basis-1/2 md:basis-1/3 lg:basis-1/6"
-              >
-                <ProductCard {...p} />
-              </CarouselItem>
-            ))
-          )}
-        </CarouselContent>
-        <div className="absolute -top-8 left-10 flex gap-2 p-2 z-10">
-          <CarouselNext className="border-current h-10 w-10 rounded-full hover:bg-gray-200 flex items-center justify-center transition" />
-          <CarouselPrevious className="border-current h-10 w-10 rounded-full hover:bg-gray-200 flex items-center justify-center transition" />
-        </div>
-      </Carousel> */}
+      {/* الأكثر مبيعًا */}
+
+      <div className="w-full max-w-8xl mx-auto pt-10 " dir="rtl">
+        <h2 className="text-2xl font-bold mb-4 mr-10">الأكثر مبيعًا </h2>
+
+        <Carousel
+          opts={{
+            align: "start",
+            direction: "rtl",
+            loop: false,
+          }}
+          className="w-full  relative "
+        >
+          <CarouselContent className="w-full mx-10">
+            {topLoading ? (
+              <SeketonCard />
+            ) : topError ? (
+              <p>حدث خطأ أثناء جلب المنتجات</p>
+            ) : (
+              topProducts.map((p) => (
+                <CarouselItem
+                  key={p.id}
+                  className="basis-1/1 sm:basis-1/2 md:basis-1/3 lg:basis-1/6"
+                >
+                  <ProductCard {...p} />
+                </CarouselItem>
+              ))
+            )}
+          </CarouselContent>
+          <div className="absolute -top-8 left-10 flex gap-2 p-2 z-10">
+            <CarouselNext className=" border-current static h-10 w-10 rounded-full hover:bg-gray-200  flex items-center justify-center transition" />
+            <CarouselPrevious className=" border-current static h-10 w-10 rounded-full hover:bg-gray-200 flex items-center justify-center transition" />
+          </div>
+        </Carousel>
+      </div>
+
+      {/* المنتحات الجديدة */}
+
+      <div className="w-full max-w-8xl mx-auto pt-10 " dir="rtl">
+        <h2 className="text-2xl font-bold mb-4 mr-10">المنتجات الجديدة </h2>
+
+        <Carousel
+          opts={{
+            align: "start",
+            direction: "rtl",
+            loop: false,
+          }}
+          className="w-full  relative "
+        >
+          <CarouselContent className="w-full mx-10">
+            {newLoading ? (
+              <SeketonCard />
+            ) : newError ? (
+              <p>حدث خطأ أثناء جلب المنتجات</p>
+            ) : (
+              newProducts.map((p) => (
+                <CarouselItem
+                  key={p.id}
+                  className="basis-1/1 sm:basis-1/2 md:basis-1/3 lg:basis-1/6"
+                >
+                  <ProductCard {...p} />
+                </CarouselItem>
+              ))
+            )}
+          </CarouselContent>
+          <div className="absolute -top-8 left-10 flex gap-2 p-2 z-10">
+            <CarouselNext className=" border-current static h-10 w-10 rounded-full hover:bg-gray-200  flex items-center justify-center transition" />
+            <CarouselPrevious className=" border-current static h-10 w-10 rounded-full hover:bg-gray-200 flex items-center justify-center transition" />
+          </div>
+        </Carousel>
+      </div>
+
+      {/* المنتحات deals */}
+
+      <div className="w-full max-w-8xl mx-auto pt-10 " dir="rtl">
+        <h2 className="text-2xl font-bold mb-4 mr-10"> التخفيضات الكبيرة </h2>
+
+        <Carousel
+          opts={{
+            align: "start",
+            direction: "rtl",
+            loop: false,
+          }}
+          className="w-full  relative "
+        >
+          <CarouselContent className="w-full mx-10">
+            {dealsLoading ? (
+              <SeketonCard />
+            ) : dealsError ? (
+              <p>حدث خطأ أثناء جلب المنتجات</p>
+            ) : (
+              dealsProducts.map((p) => (
+                <CarouselItem
+                  key={p.id}
+                  className="basis-1/1 sm:basis-1/2 md:basis-1/3 lg:basis-1/6"
+                >
+                  <ProductCard {...p} />
+                </CarouselItem>
+              ))
+            )}
+          </CarouselContent>
+          <div className="absolute -top-8 left-10 flex gap-2 p-2 z-10">
+            <CarouselNext className=" border-current static h-10 w-10 rounded-full hover:bg-gray-200  flex items-center justify-center transition" />
+            <CarouselPrevious className=" border-current static h-10 w-10 rounded-full hover:bg-gray-200 flex items-center justify-center transition" />
+          </div>
+        </Carousel>
+      </div>
     </div>
   );
 }

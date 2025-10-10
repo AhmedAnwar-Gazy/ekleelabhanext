@@ -67,12 +67,12 @@ export const metadata = {
     shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
-  manifest: "/site.webmanifest",
+  // manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" dir="rtl">
+    <html lang="ar" dir="rtl">
       {/* <body className={`${cairo.variable}  antialiased`}> */}
       <body className="antialiased">
         {/* <body> */}

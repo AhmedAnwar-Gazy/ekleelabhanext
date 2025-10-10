@@ -3,6 +3,8 @@
 import React, { useState, useRef } from "react";
 import { Heart, Star, ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
+
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import ProductTabs from "@/components/layout/ProductTabs";
@@ -165,7 +167,6 @@ const ProductDetails = () => {
               </div>
             </div>
 
-
             {/* Thumbnail Gallery */}
             {/* {products.images > 1 && (
               <div className="flex gap-3">
@@ -301,7 +302,8 @@ const ProductDetails = () => {
               </Card>
             </div>
             {/* Add to Cart Button */}
-            <Button className="w-full bg-gray-800 hover:bg-gray-900 text-white py-6 text-lg font-medium rounded-lg">
+            <Button className="w-full text-white py-6 text-lg font-medium rounded-lg">
+              <Spinner />
               أضف للسلة
             </Button>
           </div>
