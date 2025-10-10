@@ -609,9 +609,16 @@ export function DesktopMegaMenu() {
                     </li>
                   ))}
               </ul>
+              //{" "}
             </NavigationMenuContent>
           </NavigationMenuItem>
         ))}
+        <Link
+          href="/brands"
+          className="px-3 py-2 text-lg transition hover:underline hover:opacity-80"
+        >
+          الماركات
+        </Link>
       </NavigationMenuList>
     </NavigationMenu>
   );
