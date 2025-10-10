@@ -22,9 +22,15 @@ import {
   useGetDealsProductsQuery,
 } from "@/features/products/productsSlice";
 import { useSelector } from "react-redux";
+import {
+  useGetCategoryTreeQuery,
+  selectRootCategories,
+} from "../features/categories/categoriesSlice";
 
 // import { Offersdata } from "@/data/offers";
 import { brands } from "@/data/brands";
+import BrandsTest from "@/features/brands/BrandsTest";
+import CategoriesTest from "@/features/categories/CategoriesTest";
 const slugsToShow = [
   "adrienne-vittadini",
   "adidas",
@@ -136,11 +142,8 @@ export default function Home() {
           </div>
         </Carousel>
       </div>
-
       <Offers items={offerItems} />
-
       {/* الأكثر مبيعًا */}
-
       <div className="w-full max-w-8xl mx-auto pt-10 " dir="rtl">
         <h2 className="text-2xl font-bold mb-4 mr-10">الأكثر مبيعًا </h2>
 
@@ -174,9 +177,7 @@ export default function Home() {
           </div>
         </Carousel>
       </div>
-
       {/* المنتحات الجديدة */}
-
       <div className="w-full max-w-8xl mx-auto pt-10 " dir="rtl">
         <h2 className="text-2xl font-bold mb-4 mr-10">المنتجات الجديدة </h2>
 
@@ -210,9 +211,7 @@ export default function Home() {
           </div>
         </Carousel>
       </div>
-
       {/* المنتحات deals */}
-
       <div className="w-full max-w-8xl mx-auto pt-10 " dir="rtl">
         <h2 className="text-2xl font-bold mb-4 mr-10"> التخفيضات الكبيرة </h2>
 

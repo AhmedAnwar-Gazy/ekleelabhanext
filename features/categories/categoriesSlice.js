@@ -57,17 +57,17 @@ export const categoriesSlice = apiSlice.injectEndpoints({
     }),
 
     // --- Get Products by Category ---
+
     getProductsByCategory: builder.query({
-      query: ({ slug, params }) => ({
+      query: ({ id, params }) => ({
         url: `/products`,
         params: {
           ...params,
-          // category_slug: slug
-          category_id: id, // بدل category_slug
+          category_id: id, // ✅ الآن نستخدم id القادم من الدالة
         },
       }),
-      providesTags: (result, error, { slug }) => [
-        { type: "Category", id: slug },
+      providesTags: (result, error, { id }) => [
+        { type: "Category", id },
         { type: "Product", id: "LIST" },
       ],
     }),

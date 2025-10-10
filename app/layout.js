@@ -75,13 +75,13 @@ export default function RootLayout({ children }) {
     <html lang="ar" dir="rtl">
       {/* <body className={`${cairo.variable}  antialiased`}> */}
       <body className="antialiased">
-        {/* <body> */}
-        <PerfumeNavbar />
-        <div className="bg-neutral-50">
-          <Providers>{children}</Providers>
-        </div>
-        <Footer2 />
-        <Toaster />
+        <Providers>
+          {/* <body> */}
+          <PerfumeNavbar />
+          <div className="bg-neutral-50">{children}</div>
+          <Footer2 />
+          <Toaster />
+        </Providers>
       </body>
     </html>
   );

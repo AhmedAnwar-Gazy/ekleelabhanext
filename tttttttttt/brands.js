@@ -123,10 +123,7 @@ export default function BrandPage({ params }) {
 
   let filteredProducts = brandProducts;
   // المنتجات بعد الفلترة
-  // const filteredProducts =
-  //   selectedBrands.length > 0
-  //     ? brandProducts.filter((p) => selectedBrands.includes(p.brand))
-  //     : brandProducts;
+
   // فلترة حسب الفئات إذا كانت محددة
   if (selectedCategories.length > 0) {
     filteredProducts = filteredProducts.filter((p) =>
@@ -150,15 +147,8 @@ export default function BrandPage({ params }) {
       <div className=" pr-7 pt-5">
         <Breadcrumbs />
       </div>
-      {/* <h1 className="text-3xl font-bold mb-8">
-        منتجات {brandProducts[0].brand}
-      </h1> */}
+
       <div className="pt-10 pr-5 flex ">
-        {/* <FilterSidebar
-          brands={[currentBrand]}
-          selectedBrands={selectedBrands}
-          onToggleBrand={handleToggleBrand}
-        /> */}
         <FilterSidebar
           availableBrands={[currentBrand]} // ✅ الماركة الحالية فقط
           selectedBrands={selectedBrands}
@@ -208,41 +198,7 @@ export default function BrandPage({ params }) {
 
             {selectedBrands.length > 0 && !isFiltering && (
               <div className="mb-4 px-4">
-                <div className="bg-gray-50 rounded-lg p-3">
-                  {/* <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-medium text-gray-700">
-                      الفلاتر المطبقة:
-                    </span>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={clearFilters}
-                      className="text-xs text-blue-600 hover:text-blue-800"
-                    >
-                      مسح الكل
-                    </Button>
-                  </div> */}
-                  {/* <div className="flex flex-wrap gap-2">
-                    {selectedBrands.map((brand) => (
-                      <span
-                        key={brand}
-                        className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-800"
-                      >
-                        {brand}
-                        <button
-                          onClick={() =>
-                            setSelectedBrands((prev) =>
-                              prev.filter((b) => b !== brand)
-                            )
-                          }
-                          className="ml-1 text-blue-600 hover:text-blue-800"
-                        >
-                          ×
-                        </button>
-                      </span>
-                    ))}
-                  </div> */}
-                </div>
+                <div className="bg-gray-50 rounded-lg p-3"></div>
               </div>
             )}
             <section className="flex gap-3 flex-wrap justify-center px-1">
@@ -250,42 +206,7 @@ export default function BrandPage({ params }) {
                 <ProductCard key={product.id} {...product} />
               ))}
             </section>
-            {/* Products Grid */}
-            {/* <section className="flex gap-3 flex-wrap justify-center px-1 min-h-[400px] relative">
-            {isFiltering ? (
-              // Enhanced Skeleton Loading
-              <div className="w-full">
-                <div className="flex gap-3 flex-wrap justify-center">
-                  {[...Array(8)].map((_, i) => (
-                    <ProductCardSkeleton key={i} />
-                  ))}
-                </div>
-              </div>
-            ) : currentItems.length > 0 ? (
-              currentItems.map((p) => <ProductCard key={p.id} {...p} />)
-            ) : (
-              <div className="text-center py-12 w-full">
-                <div className="text-gray-500 text-lg mb-2">
-                  لم يتم العثور على منتجات
-                </div>
-                <div className="text-gray-400 text-sm">
-                  جرب تعديل الفلاتر للعثور على المنتجات المطلوبة
-                </div>
-                <Button
-                  onClick={clearFilters}
-                  className="mt-4 bg-blue-600 hover:bg-blue-700"
-                >
-                  مسح الفلاتر
-                </Button>
-              </div>
-            )}
-          </section> */}
           </div>
-          {/* <section className="flex gap-3 flex-wrap justify-center px-1">
-            {currentItems.map((product) => (
-              <ProductCard key={product.id} {...product} />
-            ))}
-          </section> */}
         </div>
       </div>
       <SwitcherPages
