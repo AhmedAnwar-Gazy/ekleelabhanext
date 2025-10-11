@@ -241,16 +241,50 @@ const ProductDetails = () => {
               {products.name}
             </h1>
             {/* Price Section */}
+            {/* السعر الأصلي يظهر دائمًا */}
             <div className="space-y-2">
+              <Badge className="bg-red-100 text-red-600 text-sm">
+                {/* نسبة الخصم */}
+                {parseFloat(products.price) >
+                  parseFloat(products.final_price) && (
+                  <span className="text-red-500 font-bold text-sm ml-2">
+                    {Math.round(
+                      ((parseFloat(products.price) -
+                        parseFloat(products.final_price)) /
+                        parseFloat(products.price)) *
+                        100
+                    )}
+                    %
+                  </span>
+                )}
+              </Badge>
               <div className="flex items-center gap-3">
-                <span className="text-gray-400 line-through text-lg">
-                  <span class="icon-saudi_riyal">{products.oldprice}</span>
+                <span
+                  className={`text-lg pl-15 ${
+                    parseFloat(products.final_price) ===
+                    parseFloat(products.price)
+                      ? "hidden"
+                      : "text-gray-400 line-through"
+                  }`}
+                >
+                  <span className="icon-saudi_riyal"></span>
+                  {parseFloat(products.price).toString()}
                 </span>
-                <Badge className="bg-red-100 text-red-600 text-sm">-67%</Badge>
               </div>
-              <div className="text-3xl font-bold text-red-600">
+              {/* <div className="text-3xl font-bold text-red-600">
                 <span class="icon-saudi_riyal">{products.price}</span>
-              </div>
+              </div> */}
+              <span
+                className={`font-bold text-3xl ${
+                  parseFloat(products.final_price) ===
+                  parseFloat(products.price)
+                    ? "text-black"
+                    : "text-red-500"
+                }`}
+              >
+                <span className="icon-saudi_riyal"></span>
+                {parseFloat(products.final_price).toString()}
+              </span>
               <p className="text-sm text-gray-500">شامل الضريبة</p>
             </div>
             {/* Product Description */}
