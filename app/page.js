@@ -104,13 +104,16 @@ export default function Home() {
 
   return (
     <div className="">
-      <Herobar imges="images/95.png" className="h-[450px] m-2 rounded  " />
+      <Herobar
+        imges="images/95.png"
+        className="h-[450px] p-2 rounded max-w-screen-2xl mx-auto  "
+      />
       {/* Hero Section */}
       <section className="text-center mb-10">
         <h1 className="text-4xl font-bold mb-4 pt-10">متجر العطور الفاخر</h1>
         <p className="text-gray-600">اكتشف أروع وأفخم العطور من حول العالم</p>
       </section>
-      <div className="w-full max-w-8xl mx-auto pt-10 " dir="rtl">
+      <div className="w-full max-w-screen-2xl mx-auto pt-10 " dir="rtl">
         <Carousel
           opts={{
             align: "start", // يبدأ من أول عنصر (لا يقطع العناصر)
@@ -120,7 +123,7 @@ export default function Home() {
           }}
           className="w-full  relative "
         >
-          <CarouselContent className="w-full mx-10">
+          <CarouselContent className="w-full px-4 gap-10 sm:gap-8 lg:gap-0">
             {isLoading ? (
               <SeketonCard />
             ) : isError ? (
@@ -129,7 +132,7 @@ export default function Home() {
               products.map((p) => (
                 <CarouselItem
                   key={p.id}
-                  className="basis-1/1 sm:basis-1/2 md:basis-1/3 lg:basis-1/6"
+                  className="basis-1/2 sm:basis-1/3 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 2xl:basis-1/6 "
                 >
                   <ProductCard {...p} />
                 </CarouselItem>
@@ -144,7 +147,7 @@ export default function Home() {
       </div>
       <Offers items={offerItems} />
       {/* الأكثر مبيعًا */}
-      <div className="w-full max-w-8xl mx-auto pt-10 " dir="rtl">
+      <div className="w-full max-w-screen-2xl mx-auto pt-10 " dir="rtl">
         <h2 className="text-2xl font-bold mb-4 mr-10">الأكثر مبيعًا </h2>
 
         <Carousel
@@ -155,7 +158,7 @@ export default function Home() {
           }}
           className="w-full  relative "
         >
-          <CarouselContent className="w-full mx-10">
+          <CarouselContent className="w-full px-4 gap-10 sm:gap-8 lg:gap-0">
             {topLoading ? (
               <SeketonCard />
             ) : topError ? (
@@ -164,7 +167,7 @@ export default function Home() {
               topProducts.map((p) => (
                 <CarouselItem
                   key={p.id}
-                  className="basis-1/1 sm:basis-1/2 md:basis-1/3 lg:basis-1/6"
+                  className="basis-1/2 sm:basis-1/3 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 2xl:basis-1/6 "
                 >
                   <ProductCard {...p} />
                 </CarouselItem>
@@ -178,7 +181,7 @@ export default function Home() {
         </Carousel>
       </div>
       {/* المنتحات الجديدة */}
-      <div className="w-full max-w-8xl mx-auto pt-10 " dir="rtl">
+      <div className="w-full max-w-screen-2xl mx-auto pt-10 " dir="rtl">
         <h2 className="text-2xl font-bold mb-4 mr-10">المنتجات الجديدة </h2>
 
         <Carousel
@@ -189,7 +192,7 @@ export default function Home() {
           }}
           className="w-full  relative "
         >
-          <CarouselContent className="w-full mx-10">
+          <CarouselContent className="w-full px-4 gap-10 sm:gap-8 lg:gap-0">
             {newLoading ? (
               <SeketonCard />
             ) : newError ? (
@@ -198,7 +201,7 @@ export default function Home() {
               newProducts.map((p) => (
                 <CarouselItem
                   key={p.id}
-                  className="basis-1/1 sm:basis-1/2 md:basis-1/3 lg:basis-1/6"
+                  className="basis-1/2 sm:basis-1/3 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 2xl:basis-1/6 "
                 >
                   <ProductCard {...p} />
                 </CarouselItem>
@@ -212,7 +215,7 @@ export default function Home() {
         </Carousel>
       </div>
       {/* المنتحات deals */}
-      <div className="w-full max-w-8xl mx-auto pt-10 " dir="rtl">
+      <div className="w-full max-w-screen-2xl mx-auto pt-10 " dir="rtl">
         <h2 className="text-2xl font-bold mb-4 mr-10"> التخفيضات الكبيرة </h2>
 
         <Carousel
@@ -223,7 +226,7 @@ export default function Home() {
           }}
           className="w-full  relative "
         >
-          <CarouselContent className="w-full mx-10">
+          <CarouselContent className="w-full px-4 gap-10 sm:gap-2 lg:gap-0">
             {dealsLoading ? (
               <SeketonCard />
             ) : dealsError ? (
@@ -232,7 +235,7 @@ export default function Home() {
               dealsProducts.map((p) => (
                 <CarouselItem
                   key={p.id}
-                  className="basis-1/1 sm:basis-1/2 md:basis-1/3 lg:basis-1/6"
+                  className="basis-1/2 sm:basis-1/3 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 2xl:basis-1/6 "
                 >
                   <ProductCard {...p} />
                 </CarouselItem>

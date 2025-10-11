@@ -8,10 +8,9 @@ import {
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
-
 export function Offers({ className, items }) {
   return (
-    <div className="grid grid-cols-12 gap-4 px-10 py-5">
+    <div className="grid grid-cols-12 gap-4 px-1 py-5 max-w-screen-2xl mx-auto lg:p-4">
       {items.map((item, i) => {
         let colSpan = "col-span-12"; // الافتراضي = كامل العرض
 

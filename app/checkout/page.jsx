@@ -9,10 +9,22 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { CreditCard, Truck, MapPin, Plus, Star } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const CheckoutPage = () => {
-  const [selectedPayment, setSelectedPayment] = useState("card");
   const [selectedDelivery, setSelectedDelivery] = useState("standard");
+
+  const [selectedPayment, setSelectedPayment] = useState("");
+  const router = useRouter();
+
+  const handlePaymentChange = (value) => {
+    setSelectedPayment(value);
+
+    // الانتقال فقط عند اختيار البطاقة الائتمانية
+    if (value === "card") {
+      router.push("checkout/payment"); // ضع هنا رابط الصفحة المطلوبة
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50" style={{ direction: "rtl" }}>
@@ -57,7 +69,7 @@ const CheckoutPage = () => {
               </CardHeader>
               <CardContent className="space-y-6">
                 {/* Delivery Options */}
-                <div>
+                {/* <div>
                   <RadioGroup
                     value={selectedDelivery}
                     onValueChange={setSelectedDelivery}
@@ -98,7 +110,7 @@ const CheckoutPage = () => {
                       </Label>
                     </div>
                   </RadioGroup>
-                </div>
+                </div> */}
 
                 <Separator />
 
@@ -128,12 +140,22 @@ const CheckoutPage = () => {
                       </div>
                     </div>
                   </div>
-
                   <RadioGroup
                     value={selectedPayment}
-                    onValueChange={setSelectedPayment}
+                    onValueChange={handlePaymentChange}
                   >
                     <div className="space-y-4">
+                      <div className="flex items-center space-x-2 p-4 border rounded-lg">
+                        <RadioGroupItem value="pickup" id="pickup" />
+                        <Label htmlFor="pickup" className="flex-1">
+                          <div>
+                            <p className="font-medium">الدفع عند الاستلام</p>
+                            <p className="text-sm text-gray-500">
+                              رسوم هذه الخدمة 28 ر.س
+                            </p>
+                          </div>
+                        </Label>
+                      </div>
                       <div className="flex items-center space-x-2 p-4 border rounded-lg">
                         <RadioGroupItem value="card" id="card" />
                         <Label htmlFor="card" className="flex-1">
@@ -169,9 +191,7 @@ const CheckoutPage = () => {
                     </p>
                   </div>
 
-                  <Button className="w-full mt-6 bg-gray-800 hover:bg-gray-700">
-                    اتمام الطلب
-                  </Button>
+                  <Button className="w-full mt-6">اتمام الطلب</Button>
                 </div>
               </CardContent>
             </Card>

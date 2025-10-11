@@ -1,0 +1,10 @@
+    .paymentWidgets * {
+      font-family: 'Cairo', sans-serif;
+      font-size: 14px;
+    }
+
+    .paymentWidgets button {
+      background-color: #1e3a8a;
+      color: white;
+      border-radius: 6px;
+    }
