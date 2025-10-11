@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Star, Heart, ShoppingCart } from "lucide-react";
 import { useGetBrandByIdQuery } from "@/features/brands/brandsSlice";
 
-
 // import { useCart } from "@/lib/CartContext";
 
 // import { toast } from "react-hot-toast"; // اختياري للإشعارات
@@ -20,7 +19,7 @@ export default function ProductCard({
   image,
   description,
   name,
-  oldprice,
+  final_price,
   price,
 }) {
   // const { addToCart } = useCart();
@@ -96,11 +95,34 @@ export default function ProductCard({
 
         {/* السعر + زر الإضافة */}
         <div className="flex justify-between items-center mt-2">
-          <span className="font-bold text-lg text-red-500">
-            {price} <span class="icon-saudi_riyal"></span>
+          {/* <span className="font-bold text-lg text-red-500">
+            {parseFloat(final_price).toString()}
+            <span class="icon-saudi_riyal"></span>
           </span>
           <span className="text-gray-400 line-through text-lg pl-15">
-            <span class="icon-saudi_riyal">{oldprice}</span>
+            <span class="icon-saudi_riyal">{price}</span>
+          </span> */}
+          <span
+            className={`font-bold text-lg ${
+              parseFloat(final_price) === parseFloat(price)
+                ? "text-black"
+                : "text-red-500"
+            }`}
+          >
+            <span className="icon-saudi_riyal"></span>
+            {parseFloat(final_price).toString()}
+          </span>
+
+          {/* السعر الأصلي يظهر دائمًا */}
+          <span
+            className={`text-lg pl-10  ${
+              parseFloat(final_price) === parseFloat(price)
+                ? "hidden"
+                : "text-gray-400 line-through"
+            }`}
+          >
+            <span className="icon-saudi_riyal"></span>
+            {parseFloat(price).toString()}
           </span>
 
           <Button
