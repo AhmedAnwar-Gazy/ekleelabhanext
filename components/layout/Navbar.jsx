@@ -48,64 +48,85 @@ export default function PerfumeNavbar() {
       dir="rtl"
       className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur"
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 text-sm">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 gap-2 sm:gap-4">
+        {/* Logo */}
         <div className="flex items-center gap-2">
-          <Link href="/" className=" text-2xl font-extrabold tracking-tight">
-            <img src="/aka.png" className="w-35" />
+          <Link
+            href="/"
+            className="flex items-center text-2xl font-extrabold tracking-tight"
+          >
+            <img src="/aka.png" alt="Logo" className="w-28 sm:w-32" />
           </Link>
         </div>
-        <div className="flex items-center gap-3">
-          <Button variant="ghost" size="sm" className="gap-2 px-2">
-            <Globe className="size-4" /> العربية
-          </Button>
 
-          <Button
-            variant="ghost"
-            size="sm"
-            className="gap-1 px-2"
-            onClick={() => setOpenSearch(true)}
+        {/* Right Side Buttons */}
+        <div className="flex items-center gap-1 sm:gap-3">
+          {/* Menu Icon (always visible on mobile) */}
+
+          <div
+            dir="ltr" // هذا يجعل كل شيء في الداخل يبدأ من اليسار
+            className="relative w-[300px] sm:w-full"
           >
-            <Search className="size-4" /> بحث
-          </Button>
-          <div className="flex p-2">
-            <User className="size-4" />
-            <Login />
+            <Button
+              variant="ghost"
+              type="text"
+              onClick={() => setOpenSearch(true)}
+              className="pl-12 pr-6 py-2 sm:py-3 sm:pl-12 sm:pr-24 bg-white rounded-4xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 text-sm sm:text-base flex items-center justify-start"
+            >
+              {/* أيقونة البحث */}
+              <Search className="h-5 w-5 text-gray-400" />
+
+              {/* نص البحث يظهر فقط على الشاشات الكبيرة */}
+              <span className="ml-2 hidden sm:inline">ابحث في اكليل ابها</span>
+            </Button>
           </div>
 
+          {/* Language Button */}
+          <Button variant="ghost" size="sm" className="gap-1 px-2">
+            <Globe className="h-4 w-4" />
+            <span className="hidden sm:inline">العربية</span>
+          </Button>
+
+          {/* Delivery Sheet */}
           <Sheet>
             <SheetTrigger asChild>
               <Button
-                variant="outline"
                 size="sm"
-                className="gap-2 rounded-full"
+                className="gap-1 rounded-full bg-transparent  hover:bg-gray-100"
               >
-                <MapPin className="size-4" />
-                التوصيل: <span>الرياض</span>
+                <MapPin className="h-4 w-4 text-black " />
+                <span className="hidden sm:inline text-black">
+                  التوصيل: الرياض
+                </span>
               </Button>
             </SheetTrigger>
-
-            <SheetContent side="left" className="w-[90vw] md:w-[600px] p-6">
+            <SheetContent
+              side="left"
+              className="w-[90vw] sm:w-[400px] md:w-[600px] p-4 sm:p-6"
+            >
               <SheetHeader>
-                <SheetTitle>اختر موقع التوصيل</SheetTitle>
+                <SheetTitle className="text-lg font-semibold">
+                  اختر موقع التوصيل
+                </SheetTitle>
               </SheetHeader>
-
-              <div className="mt-4 w-full h-80 rounded-lg overflow-hidden shadow">
+              <div className="mt-4 w-full h-64 sm:h-80 rounded-lg overflow-hidden ">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.137282162715!2d46.67529621544409!3d24.713551984126468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03875a0d12c9%3A0x73b90c7c82aefb8!2z2KfZhNmF2YjYudmK2Kkg2KfZhNmF2LPYqNmK2Kkg2KfZhNmF2YjYudmK2Kkg2YXYr9mK2YjZhNin2Kog2KfZhNi62LHYqNix2Yog2YXYpNiz2YrYqQ!5e0!3m2!1sar!2ssa!4v1692280012345!5m2!1sar!2ssa"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
-                  allowFullScreen=""
+                  allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
+                  title="Delivery Map"
                 ></iframe>
               </div>
 
-              <div className="mt-6 space-y-3">
+              <div className="mt-4 sm:mt-6 space-y-2">
                 {["الرياض", "جدة", "الدمام"].map((city) => (
                   <p
                     key={city}
-                    className="w-full py-2 border rounded-lg hover:bg-pink-50 cursor-pointer"
+                    className="w-full py-2 text-center border rounded-lg hover:bg-pink-50 cursor-pointer transition-colors"
                   >
                     {city}
                   </p>
@@ -113,6 +134,14 @@ export default function PerfumeNavbar() {
               </div>
             </SheetContent>
           </Sheet>
+
+          {/* User/Login */}
+          <div className="flex items-center gap-1 p-1 sm:p-0">
+            <User className="h-4 w-4" />
+            <span className="hidden sm:inline">
+              <Login />
+            </span>
+          </div>
         </div>
       </div>
 
@@ -247,10 +276,10 @@ function MobileMenu() {
         </Button>
       </SheetTrigger>
       <SheetContent side="right" className="w-[85vw] sm:w-96" dir="rtl">
-        <SheetHeader>
-          <SheetTitle className="text-right">القائمة</SheetTitle>
+        <SheetHeader className="text-right">
+          <SheetTitle className="text-left">القائمة</SheetTitle>
         </SheetHeader>
-        <ScrollArea className="h-[85vh] pe-2">
+        <ScrollArea className="h-[85vh] pe-2 pr-5">
           <nav className="flex flex-col mt-8 text-right">
             {rootCategories.map((category) => (
               <div key={category.id} className="mb-3">

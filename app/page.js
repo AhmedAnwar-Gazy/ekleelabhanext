@@ -124,7 +124,7 @@ export default function Home() {
           }}
           className="w-full  relative "
         >
-          <CarouselContent className="w-full px-4 gap-10 sm:gap-8 lg:gap-0">
+          <CarouselContent className="w-full px-4 gap-18 sm:gap-8 lg:gap-0">
             {isLoading ? (
               <SeketonCard />
             ) : isError ? (
@@ -159,7 +159,7 @@ export default function Home() {
           }}
           className="w-full  relative "
         >
-          <CarouselContent className="w-full px-4 gap-10 sm:gap-8 lg:gap-0">
+          <CarouselContent className="w-full px-4 gap-18 sm:gap-8 lg:gap-0">
             {topLoading ? (
               <SeketonCard />
             ) : topError ? (
@@ -193,7 +193,7 @@ export default function Home() {
           }}
           className="w-full  relative "
         >
-          <CarouselContent className="w-full px-4 gap-10 sm:gap-8 lg:gap-0">
+          <CarouselContent className="w-full px-4 gap-18 sm:gap-8 lg:gap-0">
             {newLoading ? (
               <SeketonCard />
             ) : newError ? (
@@ -227,7 +227,7 @@ export default function Home() {
           }}
           className="w-full  relative "
         >
-          <CarouselContent className="w-full px-4 gap-10 sm:gap-2 lg:gap-0">
+          <CarouselContent className="w-full px-4 gap-18 sm:gap-2 lg:gap-0">
             {dealsLoading ? (
               <SeketonCard />
             ) : dealsError ? (
