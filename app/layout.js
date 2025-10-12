@@ -80,7 +80,7 @@ export default function RootLayout({ children }) {
           <PerfumeNavbar />
           <div className="bg-neutral-50">{children}</div>
           <Footer2 />
-          <Toaster />
+          <Toaster position="top-center" richColors closeButton />
         </Providers>
       </body>
     </html>

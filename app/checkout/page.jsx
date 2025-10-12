@@ -10,19 +10,47 @@ import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { CreditCard, Truck, MapPin, Plus, Star } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner"; // ✅ استيراد Sonner
 
 const CheckoutPage = () => {
   const [selectedDelivery, setSelectedDelivery] = useState("standard");
 
-  const [selectedPayment, setSelectedPayment] = useState("");
+  const [selectedMethod, setSelectedMethod] = useState("");
+  const [isProcessing, setIsProcessing] = useState(false);
+
   const router = useRouter();
 
-  const handlePaymentChange = (value) => {
-    setSelectedPayment(value);
+  const handleCheckout = async () => {
+    if (!selectedMethod) {
+      toast.error("الرجاء اختيار طريقة الدفع أولاً ⚠️");
+      return;
+    }
 
-    // الانتقال فقط عند اختيار البطاقة الائتمانية
-    if (value === "card") {
-      router.push("checkout/payment"); // ضع هنا رابط الصفحة المطلوبة
+    // ✅ عند الدفع عند الاستلام
+    if (selectedMethod === "pickup") {
+      setIsProcessing(true);
+
+      // هنا يمكن استدعاء API لحفظ الطلب أو تأكيده
+      // مثال بسيط لمحاكاة العملية:
+      setTimeout(() => {
+        setIsProcessing(false);
+        toast.success("تم استلام طلبك بنجاح ✅ سيتم الدفع عند التسليم"),
+          router.push("/order-success"); // 🔹 صفحة نجاح الطلب
+      }, 1500);
+
+      return;
+    }
+    // ✅ الدفع بالبطاقة أو STCPAY
+    if (selectedMethod === "card") {
+      toast.info("سيتم تحويلك إلى صفحة الدفع بالبطاقة 💳", {
+        duration: 1500,
+      });
+      setTimeout(() => router.push("checkout/payment"), 1200);
+    } else if (selectedMethod === "stcpay") {
+      toast.info("سيتم تحويلك إلى صفحة STCPAY 📱", {
+        duration: 1500,
+      });
+      setTimeout(() => router.push("/stcpay"), 1200);
     }
   };
 
@@ -118,7 +146,7 @@ const CheckoutPage = () => {
                 <div>
                   <h3 className="font-medium mb-4">اختر طريقة الدفع</h3>
 
-                  <div className="grid grid-cols-4 gap-4 mb-6">
+                  {/* <div className="grid grid-cols-4 gap-4 mb-6">
                     <div className="p-3 border rounded-lg flex justify-center">
                       <div className="w-12 h-8 bg-blue-600 rounded flex items-center justify-center text-white text-xs font-bold">
                         VISA
@@ -139,10 +167,11 @@ const CheckoutPage = () => {
                         mada
                       </div>
                     </div>
-                  </div>
+                  </div> */}
+                  {/* <RadioGroup onValueChange={selectedPayment}> */}
                   <RadioGroup
-                    value={selectedPayment}
-                    onValueChange={handlePaymentChange}
+                    value={selectedMethod}
+                    onValueChange={(value) => setSelectedMethod(value)}
                   >
                     <div className="space-y-4">
                       <div className="flex items-center space-x-2 p-4 border rounded-lg">
@@ -152,6 +181,17 @@ const CheckoutPage = () => {
                             <p className="font-medium">الدفع عند الاستلام</p>
                             <p className="text-sm text-gray-500">
                               رسوم هذه الخدمة 28 ر.س
+                            </p>
+                          </div>
+                        </Label>
+                      </div>
+                      <div className="flex items-center space-x-2 p-4 border rounded-lg">
+                        <RadioGroupItem value="online" id="online" />
+                        <Label htmlFor="online" className="flex-1">
+                          <div>
+                            <p className="font-medium">تاب</p>
+                            <p className="text-sm text-gray-500">
+                              قسط مشترياتك على 4 دفعات بدون رسوم أو فوائد
                             </p>
                           </div>
                         </Label>
@@ -191,7 +231,9 @@ const CheckoutPage = () => {
                     </p>
                   </div>
 
-                  <Button className="w-full mt-6">اتمام الطلب</Button>
+                  <Button className="w-full mt-6" onClick={handleCheckout}>
+                    اتمام الطلب
+                  </Button>
                 </div>
               </CardContent>
             </Card>

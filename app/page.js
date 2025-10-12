@@ -31,6 +31,7 @@ import {
 import { brands } from "@/data/brands";
 import BrandsTest from "@/features/brands/BrandsTest";
 import CategoriesTest from "@/features/categories/CategoriesTest";
+import SearchComponent from "@/features/search/SearchComponent";
 const slugsToShow = [
   "adrienne-vittadini",
   "adidas",
