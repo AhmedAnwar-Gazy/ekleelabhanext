@@ -344,7 +344,8 @@ const ProductDetails = () => {
         </div>
       </div>
       <ProductTabs />
-      <div className="w-[1350px] max-w-8xl mx-auto " dir="rtl">
+      {/* <div className="w-[1350px] max-w-7xl mx-auto " dir="rtl"> */}
+      <div className="w-full max-w-screen-2xl mx-auto pt-10 " dir="rtl">
         <Carousel
           opts={{
             align: "start", // يبدأ من أول عنصر (لا يقطع العناصر)
@@ -358,16 +359,16 @@ const ProductDetails = () => {
             {relatedProducts?.map((related) => (
               <CarouselItem
                 key={related.id}
-                className="basis-1/2 sm:basis-1/3 md:basis-1/3 lg:basis-1/5"
+                className="basis-1/2 sm:basis-1/3 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 2xl:basis-1/6 "
               >
                 {/* بدل div البسيط بكارت حقيقي */}
                 <ProductCard {...related} />
               </CarouselItem>
             ))}
           </CarouselContent>
-          <div className="absolute top-45 left-5 right-5 flex justify-between w-[100%] gap-2 p-2 z-10">
-            <CarouselNext className=" border-current static h-12 w-12 rounded-full hover:bg-gray-200  flex items-center justify-center transition" />
-            <CarouselPrevious className=" border-current static h-12 w-12 rounded-full hover:bg-gray-200 flex items-center justify-center transition" />
+          <div className="absolute -top-8 left-10 flex gap-2 p-2 z-10">
+            <CarouselNext className=" border-current static h-10 w-10 rounded-full hover:bg-gray-200  flex items-center justify-center transition" />
+            <CarouselPrevious className=" border-current static h-10 w-10 rounded-full hover:bg-gray-200 flex items-center justify-center transition" />
           </div>
           {/* <CarouselPrevious />
           <CarouselNext /> */}
