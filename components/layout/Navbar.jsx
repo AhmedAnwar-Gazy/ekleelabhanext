@@ -65,7 +65,7 @@ export default function PerfumeNavbar() {
 
           <div
             dir="ltr" // هذا يجعل كل شيء في الداخل يبدأ من اليسار
-            className="relative w-[300px] sm:w-full"
+            className="relative w-[200px] sm:w-full"
           >
             <Button
               variant="ghost"
