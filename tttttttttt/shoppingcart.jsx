@@ -1,25 +1,5 @@
-// "use client";
-// import { Button } from "@/components/ui/button";
-// import { ShoppingCart } from "lucide-react";
-// import { useCart } from "@/lib/CartContext";
+// export default ShoppingCart;
 
-// export default function CartIcon() {
-//   const { cart, getTotalItems } = useCart();
-
-//   return (
-//     <Button variant="ghost" className="relative">
-//       <ShoppingCart className="w-6 h-6" />
-//       {getTotalItems() > 0 && (
-//         <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-//           {getTotalItems()}
-//         </span>
-//       )}
-//     </Button>
-//   );
-// }
-
-// ShoppingCart.jsx
-// src/components/ShoppingCart.jsx أو مكانه المناسب
 "use client";
 
 import React, { useState } from "react";
@@ -35,14 +15,72 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Minus, Plus, ShoppingCart as ShoppingCartIcon, X } from "lucide-react";
 
-// استيراد الـ hooks من cartSlice
-import {
-  useGetCartQuery,
-  useUpdateCartItemMutation,
-  useRemoveFromCartMutation,
-} from "@/features/cart/cartSlice";
+// ✅ بيانات وهمية للسلة (بدون API أو Redux)
+const useMockCart = () => {
+  const [cartItems, setCartItems] = useState([
+    {
+      id: "item-1",
+      quantity: 2,
+      product: {
+        id: "p1",
+        name: "سماعة رأس لاسلكية",
+        price: 299.99,
+        image: "/placeholder-headphones.jpg",
+      },
+    },
+    {
+      id: "item-2",
+      quantity: 1,
+      product: {
+        id: "p2",
+        name: "ساعة ذكية",
+        price: 399.99,
+        image: "/placeholder-watch.jpg",
+      },
+    },
+    {
+      id: "item-3",
+      quantity: 3,
+      product: {
+        id: "p3",
+        name: "حقيبة كمبيوتر",
+        price: 89.99,
+        image: "/placeholder-backpack.jpg",
+      },
+    },
+  ]);
 
-// CartItem Component
+  const removeItem = (id) => {
+    setCartItems(cartItems.filter((item) => item.id !== id));
+  };
+
+  const updateQuantity = (id, newQuantity) => {
+    if (newQuantity < 1) return;
+    setCartItems(
+      cartItems.map((item) =>
+        item.id === id ? { ...item, quantity: newQuantity } : item
+      )
+    );
+  };
+
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const subtotal = cartItems.reduce(
+    (sum, item) => sum + item.product.price * item.quantity,
+    0
+  );
+
+  return {
+    cartItems,
+    removeItem,
+    updateQuantity,
+    totalItems,
+    subtotal,
+    isLoading: false,
+    isError: false,
+  };
+};
+
+// CartItem Component (كما هو)
 const CartItem = ({ item, onRemove, onUpdateQuantity }) => {
   return (
     <div className="flex py-4">
@@ -54,7 +92,7 @@ const CartItem = ({ item, onRemove, onUpdateQuantity }) => {
         />
       </div>
 
-      <div className="ml-4 flex-1 flex flex-col pr-2">
+      <div className="ml-4 flex-1 flex flex-col pr-3">
         <div>
           <div className="flex justify-between text-base font-medium">
             <h3 className="text-foreground">{item.product?.name}</h3>
@@ -107,48 +145,23 @@ const CartItem = ({ item, onRemove, onUpdateQuantity }) => {
 const ShoppingCart = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // جلب السلة من الـ API
-  const { data: cartData, isLoading, isError } = useGetCartQuery();
-  const [updateCartItem] = useUpdateCartItemMutation();
-  const [removeFromCart] = useRemoveFromCartMutation();
+  // ✅ استخدام البيانات الوهمية بدلًا من useGetCartQuery
+  const { cartItems, totalItems, subtotal, removeItem, updateQuantity } =
+    useMockCart();
 
-  // إذا لم تكن هناك بيانات بعد، نستخدم حالة افتراضية
-  const cartItems = cartData?.entities
-    ? Object.values(cartData.entities).filter(Boolean)
-    : [];
-  const totalItems = cartData?.totalItems || 0;
-  const subtotal = cartData?.subtotal || 0;
-
-  const handleUpdateQuantity = async (id, newQuantity) => {
-    if (newQuantity < 1) return;
-    try {
-      await updateCartItem({ id, quantity: newQuantity }).unwrap();
-    } catch (err) {
-      console.error("Failed to update quantity:", err);
-    }
+  const handleUpdateQuantity = (id, newQuantity) => {
+    updateQuantity(id, newQuantity);
   };
 
-  const handleRemove = async (id) => {
-    try {
-      await removeFromCart(id).unwrap();
-    } catch (err) {
-      console.error("Failed to remove item:", err);
-    }
+  const handleRemove = (id) => {
+    removeItem(id);
   };
-
-  if (isLoading) {
-    return (
-      <Button variant="outline" size="icon" disabled>
-        <ShoppingCartIcon className="h-5 w-5" />
-      </Button>
-    );
-  }
 
   return (
     <div>
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetTrigger asChild>
-          <Button variant="outline" size="icon" className="relative bg-transparent rounded-4xl">
+          <Button variant="outline" size="icon" className="relative">
             <ShoppingCartIcon className="h-5 w-5" />
             {totalItems > 0 && (
               <span className="absolute -top-2 -right-2 bg-primary text-primary-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center">
@@ -160,11 +173,11 @@ const ShoppingCart = () => {
 
         <SheetContent className="flex flex-col w-full sm:max-w-lg">
           <SheetHeader>
-            <SheetTitle>Shopping Cart</SheetTitle>
+            <SheetTitle>سلة التسوق</SheetTitle>
             <SheetDescription>
               {cartItems.length > 0
-                ? `You have ${cartItems.length} items in your cart`
-                : "Your cart is empty"}
+                ? `لديك ${cartItems.length} منتجات في سلة التسوق`
+                : "سلة التسوق فارغة"}
             </SheetDescription>
           </SheetHeader>
 
@@ -172,9 +185,9 @@ const ShoppingCart = () => {
             {cartItems.length === 0 ? (
               <div className="text-center py-12">
                 <ShoppingCartIcon className="mx-auto h-12 w-12 text-muted-foreground" />
-                <h3 className="mt-4 text-lg font-medium">Your cart is empty</h3>
+                <h3 className="mt-4 text-lg font-medium">سلة التسوق فارغة</h3>
                 <p className="mt-1 text-muted-foreground">
-                  Start adding some items to your cart
+                  ابدأ بإضافة بعض المنتجات إلى سلة التسوق
                 </p>
               </div>
             ) : (
@@ -197,11 +210,11 @@ const ShoppingCart = () => {
             <div className="border-t border-border px-2 py-6">
               <div className="space-y-4">
                 <div className="flex justify-between text-base font-medium">
-                  <p>Subtotal</p>
+                  <p>المجموع الفرعي</p>
                   <p>${subtotal.toFixed(2)}</p>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Shipping and taxes calculated at checkout
+                  سيتم حساب الشحن والضرائب عند الدفع
                 </p>
                 <div className="flex space-x-3">
                   <Button
@@ -209,9 +222,9 @@ const ShoppingCart = () => {
                     className="flex-1"
                     onClick={() => setIsOpen(false)}
                   >
-                    Continue Shopping
+                    متابعة التسوق
                   </Button>
-                  <Button className="flex-1">Checkout</Button>
+                  <Button className="flex-1">الدفع الآن</Button>
                 </div>
               </div>
             </div>
@@ -221,4 +234,5 @@ const ShoppingCart = () => {
     </div>
   );
 };
+
 export default ShoppingCart;

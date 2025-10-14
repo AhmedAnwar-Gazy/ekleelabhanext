@@ -4,6 +4,7 @@ import * as React from "react";
 import { useState } from "react";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
+import { UserIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -27,6 +28,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import OTPDialog from "@/components/login_and_signin/verification_OTP/OTP";
+import { Menu, Search, MapPin, User, Globe } from "lucide-react";
 
 export default function Login() {
   const [activeMode, setMode] = useState("login"); // login | signup
@@ -85,7 +87,15 @@ export default function Login() {
 
   return (
     <Sheet>
-      <SheetTrigger>حسابي</SheetTrigger>
+      <SheetTrigger asChild>
+        <Button
+          variant="outline"
+          size="icon"
+          className="relative rounded-4xl bg-transparent"
+        >
+          <UserIcon className="h-4 w-4" />
+        </Button>
+      </SheetTrigger>
       <SheetContent>
         {activeMode === "login" ? (
           <>

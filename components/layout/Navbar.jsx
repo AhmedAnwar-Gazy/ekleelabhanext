@@ -39,9 +39,15 @@ import { Button } from "@/components/ui/button";
 import { Menu, Search, MapPin, User, Globe } from "lucide-react";
 import Login from "../login_and_signin/login";
 import SearchBarDialog from "./SearchBarDialog";
+import ShoppingCart from "../cart/ShoppingCart";
+
+import locationSheet from "../locationSheet/locationSheet";
+import LocationSheet from "../locationSheet/locationSheet";
 
 export default function PerfumeNavbar() {
+  
   const [openSearch, setOpenSearch] = useState(false);
+  
 
   return (
     <header
@@ -71,74 +77,39 @@ export default function PerfumeNavbar() {
               variant="ghost"
               type="text"
               onClick={() => setOpenSearch(true)}
-              className="pl-12 pr-6 py-2 sm:py-3 sm:pl-12 sm:pr-24 bg-white rounded-4xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 text-sm sm:text-base flex items-center justify-start"
+              className="pl-12 pr-6 py-2 sm:py-3 sm:pl-12 sm:pr-24 bg-white rounded-4xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 text-sm sm:text-base flex items-center justify-start bg-transparent"
             >
               {/* أيقونة البحث */}
-              <Search className="h-5 w-5 text-gray-400" />
+              <Search className="h-5 w-5 text-gray-900" />
 
               {/* نص البحث يظهر فقط على الشاشات الكبيرة */}
-              <span className="ml-2 hidden sm:inline">ابحث في اكليل ابها</span>
+              <span className="ml-2 pr-4 sm:pr-10 sm:inline text-gray-400 text-[15px]">
+                ابحث في اكليل ابها
+              </span>
             </Button>
           </div>
 
           {/* Language Button */}
-          <Button variant="ghost" size="sm" className="gap-1 px-2">
+          {/* <Button variant="ghost" size="sm" className="gap-1 px-2">
             <Globe className="h-4 w-4" />
             <span className="hidden sm:inline">العربية</span>
-          </Button>
+          </Button> */}
 
-          {/* Delivery Sheet */}
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button
-                size="sm"
-                className="gap-1 rounded-full bg-transparent  hover:bg-gray-100"
-              >
-                <MapPin className="h-4 w-4 text-black " />
-                <span className="hidden sm:inline text-black">
-                  التوصيل: الرياض
-                </span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent
-              side="left"
-              className="w-[90vw] sm:w-[400px] md:w-[600px] p-4 sm:p-6"
-            >
-              <SheetHeader>
-                <SheetTitle className="text-lg font-semibold">
-                  اختر موقع التوصيل
-                </SheetTitle>
-              </SheetHeader>
-              <div className="mt-4 w-full h-64 sm:h-80 rounded-lg overflow-hidden ">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.137282162715!2d46.67529621544409!3d24.713551984126468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03875a0d12c9%3A0x73b90c7c82aefb8!2z2KfZhNmF2YjYudmK2Kkg2KfZhNmF2LPYqNmK2Kkg2KfZhNmF2YjYudmK2Kkg2YXYr9mK2YjZhNin2Kog2KfZhNi62LHYqNix2Yog2YXYpNiz2YrYqQ!5e0!3m2!1sar!2ssa!4v1692280012345!5m2!1sar!2ssa"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Delivery Map"
-                ></iframe>
-              </div>
+          <div className="flex items-center gap-1 p-1 sm:p-0">
+            <span className="hidden sm:inline">
+              <LocationSheet />
+            </span>
+          </div>
 
-              <div className="mt-4 sm:mt-6 space-y-2">
-                {["الرياض", "جدة", "الدمام"].map((city) => (
-                  <p
-                    key={city}
-                    className="w-full py-2 text-center border rounded-lg hover:bg-pink-50 cursor-pointer transition-colors"
-                  >
-                    {city}
-                  </p>
-                ))}
-              </div>
-            </SheetContent>
-          </Sheet>
+          <div className="flex items-center gap-1 p-1 sm:p-0">
+            <span className=" sm:inline">
+              <ShoppingCart />
+            </span>
+          </div>
 
           {/* User/Login */}
           <div className="flex items-center gap-1 p-1 sm:p-0">
-            <User className="h-4 w-4" />
-            <span className="hidden sm:inline">
+            <span className=" sm:inline">
               <Login />
             </span>
           </div>
